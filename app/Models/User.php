@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'role_id',
+        'bank_id',
+        'financial_institution_umi_id',
+        'photo',
+        'regency_id',
+        'district_id',
     ];
 
     /**
@@ -42,4 +50,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Set UUID on boot.
+        self::creating(function ($model) {
+            $model->id = (string)  Str::uuid();
+        });
+    }
+
+
+    public function bank()
+    {
+      return $this->belongsTo('App\Bank')->withTrashed();
+    }
+
+    public function userpostalcode()
+    {
+      return $this->hasMany('App\UserPostalCode', 'user_id');
+    }
+
+    public function roles()
+      {
+          return $this->belongsTo('App\Role', 'role_id');
+      }
 }

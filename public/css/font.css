@@ -2,7 +2,7 @@
   font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: 300;
-  src: url('{{ asset(" fonts/sourcesanspro/sourcesanspro-light.woff") }}') format('woff');
+  src: url(../fonts/sourcesanspro/sourcesanspro-light.woff) format('woff');
 }
 
 @font-face {
