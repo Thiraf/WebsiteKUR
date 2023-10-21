@@ -1,0 +1,278 @@
+/*content*/
+.content .justify,
+.justify {
+    text-align: justify;
+}
+
+.content strong,
+.content b {
+    font-weight: bold;
+}
+
+.content em {
+    font-style: italic;
+}
+
+.content blockquote {
+    border-left: none;
+    /* background: #f9f9f9; */
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-style: italic;
+    padding: 30px 0 30px 50px;
+    position: relative;
+    color: #383838;
+}
+
+.content blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 113px;
+    position: absolute;
+    left: 0;
+    top: -20px;
+    color: #7a7a7a;
+    z-index: 1;
+    background: #fff;
+    height: 66px;
+}
+
+.content blockquote:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 5px;
+    background: #ddd;
+    left: 25px;
+    top: 0;
+}
+
+.content blockquote p {
+    font-size: inherit;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+    font-weight: 300;
+    display: block;
+    padding: 5px 0;
+}
+
+.content h1 {
+    font-size: 1.8em;
+}
+
+.content h2 {
+    font-size: 1.6em;
+}
+
+.content h3 {
+    font-size: 1.4em;
+}
+
+.content h4 {
+    font-size: 1.2em;
+}
+
+.content h5 {
+    font-size: 1em;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%;
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 0 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.alignnone {
+    margin: 5px 20px 20px 0
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto
+}
+
+.alignright {
+    float: right;
+    margin: 5px 0 20px 20px
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 100%;
+    padding: 5px 3px 10px;
+    text-align: center
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px
+}
+
+.wp-caption img {
+    border: 0;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px
+}
+
+.content li ul,
+.content li ol {
+    margin: 0 1.5em;
+}
+
+.content ul,
+.content ol {
+    margin: 0;
+    padding: 0 15px;
+    display: inline-block;
+}
+
+.content ul {
+    list-style-type: disc;
+}
+
+.content ol {
+    list-style-type: decimal;
+}
+
+.content ol ol {
+    list-style: upper-alpha;
+}
+
+.content ol ol ol {
+    list-style: lower-roman;
+}
+
+.content ol ol ol ol {
+    list-style: lower-alpha;
+}
+
+.content ul li,
+.content ol li {
+    padding: 0 5px;
+    margin: 10px 0;
+}
+
+.content td {
+    border: 1px solid #999;
+    padding: 3px 8px;
+}
+
+.content table {
+    text-align: left;
+}
+
+.gallery-icon,
+.gallery-icon a {
+    line-height: 0;
+    display: block;
+}
+
+.content .gallery-item {
+    margin: 0 !important;
+}
+
+.content .gallery-item img {
+    border: none !important;
+}

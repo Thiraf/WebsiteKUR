@@ -10,62 +10,56 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
+use Illuminate\Support\Facades\Session;
+
+
 class LoginController extends Controller
 {
-    // use AuthenticatesUsers;
-
-    //
-    // protected $redirectTo = '/manage';
-
-    // public function __construct()
-    // {
-    //     $this->middleware('guest')->except('logout');
-    // }
-
-
-    public function loginUser(Request $request){
-        $rules = [
-            'email' => 'required',
-            'password' => 'required',
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
-            return response()->json([
-                'status' => false,
-                'message' => 'proses login gagal ekk',
-                'data' => $validator -> errors()
-            ], 401);
+    public function login()
+    {
+        if (Auth::check()) {
+            return redirect('/manage');
+        }else{
+            return view('login');
         }
-
-        if(!Auth::guard('web')->attempt($request->only(['email', 'password']))){
-            return response()->json([
-                'status'=> false,
-                'message' => 'email dan pass salah y'
-            ], 401);
-        }
-
-        // $cek = Auth::user()->role_id;
-        $cek = auth()->user()->role_id;
-
-
-        $datauser = User::where('email', $request->email)->first();
-        return response()->json([
-            'status' => true,
-            'message' => 'berhasil proses login nya uu',
-            'token' => $datauser->createToken('token-login')->plainTextToken,
-            'cekrole' => $cek,
-        ]);
-
-        // $accessToken =  $datauser->createToken('token-login')->plainTextToken;
-        // return redirect('/manage')->with('token', $accessToken);
     }
 
+    public function actionlogin(Request $request)
+    {
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
 
-    // public function logout(Request $request)
-    // {
-    //     $this->performLogout($request);
-    //     return redirect()->to('/login');
-    // }
+        if (Auth::Attempt($data)) {
+            return redirect('manage');
+            // return view('backend.pages.termin.index');
+        }else{
+            Session::flash('error', 'Email atau Password Salah');
+            return redirect('/login');
+        }
+    }
 
+    public function actionlogout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

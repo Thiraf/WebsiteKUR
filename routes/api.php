@@ -80,9 +80,9 @@ Route::resource('statistik', StatistikController::class);
 
 
 // authorization
-Route::middleware('auth:sanctum')->name('api.')->group(function () {
+Route::name('api.')->group(function () {
 
-    Route::middleware('admin0123')->group(function () {
+    // Route::middleware('admin0123')->group(function () {
         // semua admin -------------
 
         // Dashboard
@@ -96,7 +96,7 @@ Route::middleware('auth:sanctum')->name('api.')->group(function () {
 
 
 
-        Route::middleware('admin01')->group(function () {
+        // Route::middleware('admin01')->group(function () {
             // hanya admin 0 1 (ojk dan bank) ------------
 
             // Master Data
@@ -104,7 +104,7 @@ Route::middleware('auth:sanctum')->name('api.')->group(function () {
             Route::resource('user',UserController::class);
 
 
-            Route::middleware('superadmin0')->group(function () {
+            // Route::middleware('superadmin0')->group(function () {
                 // hanya admin 0 (ojk) ------------
 
                 // DADHBOARD
@@ -141,11 +141,11 @@ Route::middleware('auth:sanctum')->name('api.')->group(function () {
                 // Testimoni ()
                 Route::resource('testimoni',TestimonialController::class);
 
-            });
+            // });
 
-        });
+        // });
 
-    });
+    // });
 });
 
 // disini ------ (buat coba-coba tanpa auth)
