@@ -34,7 +34,7 @@ Route::post('register/action', [RegisterController::class, 'actionregister'])->n
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
-// ---------------JANGAN DIUBAHHHH BERPENGARUH KE CONTROLLER API---------------------
+
 // still figuring out kenapa ini gabisa masuk ke function prefix manage
 Route::get('credit-request/{id}/confirm', [CreditRequestController::class], 'confirm')->name('manage.credit-request.confirm');
 Route::get('credit-request/{id}/redirect',[CreditRequestController::class],'redirect')->name('manage.credit-request.redirect');
@@ -48,7 +48,7 @@ Route::get('credit-request',[CreditRequestController::class], 'show')->name('man
 #or
 Route::get('credit-request/{id}/show',[CreditRequestController::class], 'show')->name('manage.credit-request.show');
 #lebih make sense yg bawahhhh ini but didnt find any "{id}/show" route di file project sebelumnya
-// ---------------JANGAN DIUBAHHHH BERPENGARUH KE CONTROLLER API----------------------
+
 
 
 
