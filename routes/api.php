@@ -6,7 +6,6 @@ use App\Http\Controllers\Api\TestimonialControler;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\TerminController;
-use App\Http\Controllers\Api\BusinessTypeController;
 use App\Http\Controllers\Api\BankController;
 use App\Http\Controllers\Api\KurTypeController;
 use App\Http\Controllers\Api\CreditRequestController;
@@ -19,6 +18,7 @@ use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\TestimonialController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StatistikController;
+use App\Http\Controllers\Api\BusinessTypeController;
 
 // use Illuminate\Support\Facades\Route;
 
@@ -74,13 +74,17 @@ Route::get('login', function () {
 //     });
 // });
 
+
 require_once 'api.php';
 
 Route::resource('statistik', StatistikController::class);
-
+// Route::name('api.')->group(function () {
+// Route::get('api/business-type', BusinessTypeController::class)->name('business-type.index');
 
 // authorization
 Route::name('api.')->group(function () {
+// Route::namespace('Api')->middleware('auth')->prefix('api')->name('api.')->group(function () {
+// Route::namespace('Api')->prefix('api')->name('api.')->group(function () {
 
     // Route::middleware('admin0123')->group(function () {
         // semua admin -------------
@@ -115,7 +119,7 @@ Route::name('api.')->group(function () {
                 Route::resource('bank', BankController::class);
                 Route::get('bank/list/search',[BankController::class, 'search'])->name('bank.search');
                 // Jenis Usaha ()
-                Route::resource('business-type', BusinessTypeController::class);
+                // Route::resource('business-type', BusinessTypeController::class);
                 // Izin Usaha
                 Route::resource('business-permit',BusinessPermitController::class);
                 // Jenis KUR

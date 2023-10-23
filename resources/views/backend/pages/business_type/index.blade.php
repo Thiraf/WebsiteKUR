@@ -20,10 +20,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar Jenis Usaha 
+                    Daftar Jenis Usaha
                 </div>
                 <div class="table-responsive">
-                    
+
                     <table class="table table-bordered"  id="datatable">
                         <thead>
                             <tr>
@@ -57,24 +57,27 @@
                     },
                     isEdit : false,
                     idEdit : null,
-                    datatable : null              
+                    datatable : null
                 }
             },
             mounted() {
                 this.dataTable = $("#datatable").DataTable({
-                    ajax: "{{-- route('api.business-type.index') --}}",
+
+
+                    ajax: "{{route('api.business-type.index')}}",
+
                     processing: true,
                     serverSide : true,
                     order: [[ 1, "asc" ]],
                     columns: [
                         { data: "action", name: "action", orderable: false },
                         { data: "name", name: "name", orderable: false },
-                    
+
                     // { data: "id_kepala", name: "id_kepala" }
                     ]
                 });
 
-                
+
             },
             methods : {
 
@@ -89,7 +92,7 @@
                         id : null,
                     },
                     this.isEdit = false,
-                    this.idEdit = null  
+                    this.idEdit = null
                 },
 
                 editItem(id) {
@@ -104,7 +107,7 @@
                                 }
                                 self.isEdit = true,
                                 self.idEdit = response.data.data.id
-                                
+
                                 $("#form-business-type-modal").modal('show')
 
                             } else {
@@ -113,12 +116,12 @@
                         })
                         .catch(function (error) {
                             // handle error
-                            
+
                         })
                         .finally(function () {
                             // always executed
                         });
-                    
+
                 },
 
                 submitForm() {
@@ -131,7 +134,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -154,7 +157,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {

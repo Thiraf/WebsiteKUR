@@ -65,7 +65,9 @@ var app = new Vue({
     },
     mounted() {
         this.dataTable = $("#datatable").DataTable({
-            ajax: "{{-- route('api.testimoni.index') --}}",
+            // ajax: "{{-- route('api.testimoni.index') --}}",
+            ajax: "{{route('api.testimoni.index') }}",
+
             processing: true,
             serverSide: true,
             order: [

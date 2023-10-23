@@ -64,7 +64,9 @@
             },
             mounted() {
                 this.dataTable = $("#datatable").DataTable({
-                    ajax: "{{-- route('api.termin.index') --}}",
+                    ajax: "{{route('api.termin.index') }}",
+                    // ajax: "{{-- route('api.termin.index') --}}"
+
                     processing: true,
                     serverSide : true,
                     order: [[ 1, "asc" ]],

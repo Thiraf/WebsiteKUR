@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\TerminController;
 use App\Http\Controllers\Backend\BankController;
+use App\Http\Controllers\Backend\BusinessTypeController;
 
 use Illuminate\Support\Facades\File;
 
@@ -123,14 +124,16 @@ Route::get('credit-request/{id}/show',[CreditRequestController::class], 'show')-
 //     });
 // });
 
-
+// Route::resource('termin', TerminController::class);
+// Route::resource('testimoni',TestimonialController::class);
 
 
 Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () {
+// Route::prefix('manage')->name('manage.')->group(function () {
     // Route::resource('credit-request',CreditRequestController::class);
     Route::resource('/', HomeController::class);
 
-    Route::middleware('admin0123')->group(function () {
+    // Route::middleware('admin0123')->group(function () {
         // semua admin -------------
 
         // Dashboard
@@ -149,7 +152,7 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
         Route::get('credit-request/export', [CreditRequestController::class, 'exportExcel'])->name('credit-request.export');
 
 
-        Route::middleware('admin01')->group(function () {
+        // Route::middleware('admin01')->group(function () {
             // hanya admin 0 1 (ojk dan bank) ------------
 
             // Master Data
@@ -160,7 +163,7 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
 
 
-            Route::middleware('superadmin0')->group(function () {
+            // Route::middleware('superadmin0')->group(function () {
                 // hanya admin 0 (ojk) ------------
 
                 // DADHBOARD
@@ -300,10 +303,10 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
             });
 
-        });
+        // });
 
-    });
-});
+    // });
+// });
 
 
 
