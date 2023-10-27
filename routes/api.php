@@ -119,7 +119,7 @@ Route::name('api.')->group(function () {
                 Route::resource('bank', BankController::class);
                 Route::get('bank/list/search',[BankController::class, 'search'])->name('bank.search');
                 // Jenis Usaha ()
-                // Route::resource('business-type', BusinessTypeController::class);
+                Route::resource('business-type', BusinessTypeController::class);
                 // Izin Usaha
                 Route::resource('business-permit',BusinessPermitController::class);
                 // Jenis KUR

@@ -20,6 +20,7 @@ class BusinessTypeController extends Controller
                 ->addColumn('action',function($data){
                     $edit = "<a href='#' @click='editItem($data->id)' data-id='$data->id' class='edit-item btn btn-addon text-center btn-sm btn-warning'><i class='fa fa-pencil'></i> Edit</a>";
                     $delete = " <a href='#' @click='deleteItem($data->id)' data-id='$data->id' data-url='" . route('api.business-type.destroy',[$data->id]) . "' class='delete-item btn btn-addon text-center btn-sm btn-danger'><i class='fa fa-trash'></i> Hapus</a>";
+                    // $delete = " <a href='#' @click='deleteItem($data->id)' data-id='$data->id' class='delete-item btn btn-addon text-center btn-sm btn-danger'><i class='fa fa-trash'></i> Hapus</a>";
 
                     return $edit.$delete;
                 })
@@ -104,7 +105,9 @@ class BusinessTypeController extends Controller
             return $this->errNotFoundMsg();
         }
 
-        $data->delete($id);
+        // $data->delete($id);
+        // $data->delete();
+        BusinessType::where('id', $id)->forceDelete();
 
         return $this->successResponseMsg("Data berhasil di hapus");
     }
