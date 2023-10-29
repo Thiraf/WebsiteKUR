@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Daftar Pengajuan
