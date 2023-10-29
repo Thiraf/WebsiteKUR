@@ -18,24 +18,24 @@ class PageTableSeeder extends Seeder
 
         Page::create([
                             'category_news_id' => NULL,
-            'content' => '<ul style="margin-bottom: 1rem; color: rgb(38, 59, 94); font-family: Quicksand, sans-serif; font-size: 16px;"><li>Usaha mikro, kecil, dan menengah;</li><li>Calon tenaga kerja Indonesia yang akan bekerja di luar negeri;</li><li>Calon pekerja magang di luar negeri;</li><li>Anggota keluarga dari karyawan/karyawati yang berpenghasilan tetap atau bekerja sebagai tenaga kerja indonesia;</li><li>Tenaga kerja Indonesia yang pernah bekerja di luar negeri;</li><li>Pekerja yang terkena pemutusan hubungan kerja;</li><li>Usaha mikro, kecil, dan menengah di wilayah perbatasan dengan negara lain; dan/atau</li><li>Kelompok Usaha seperti Kelompok Usaha Bersama (KUBE), Gabungan Kelompok Tani dan Nelayan ( Gapoktan), dan Kelompok Usaha lainnya.</li></ul>',
+            'content' => 'Alhamdulillah dengan adanya website sy mendapat kemudahan mengenai informasi KUR dan syaratÂ² pengajuannya.. selain itu saya juga mendapat pelayanan yang baik dan sigap dari pihak bank BRI, saya sangat berterima kasih karna dengan adanya layanan ini, usaha sy bisa berjalan dengan baik..&nbsp;',
                 'created_at' => '2021-12-06 01:58:31',
                 'id' => '595a48d0-6655-4e6b-982d-1743b6bc414a',
                 'img' => NULL,
-                'slug' => 'siapa-saja-penerima-kur',
-                'title' => 'Siapa saja penerima KUR ?',
+                'title' => 'Ayasya',
+                'slug' => 'Siapa saja penerima KUR ?',
                 'type' => 'FAQ',
                 'updated_at' => '2021-12-06 01:58:31',
         ]);
 
         Page::create([
                 'category_news_id' => NULL,
-                'content' => '<ul style="margin-bottom: 1rem; color: rgb(38, 59, 94); font-family: Quicksand, sans-serif; font-size: 16px;"><li>Usaha mikro, kecil, dan menengah;</li><li>Calon tenaga kerja Indonesia yang akan bekerja di luar negeri;</li><li>Calon pekerja magang di luar negeri;</li><li>Anggota keluarga dari karyawan/karyawati yang berpenghasilan tetap atau bekerja sebagai tenaga kerja indonesia;</li><li>Tenaga kerja Indonesia yang pernah bekerja di luar negeri;</li><li>Pekerja yang terkena pemutusan hubungan kerja;</li><li>Usaha mikro, kecil, dan menengah di wilayah perbatasan dengan negara lain; dan/atau</li><li>Kelompok Usaha seperti Kelompok Usaha Bersama (KUBE), Gabungan Kelompok Tani dan Nelayan ( Gapoktan), dan Kelompok Usaha lainnya.</li></ul>',
+                'content' =>  'Mantab, menjadi lebih mudah untuk pengajuan',
                 'created_at' => '2021-12-06 01:58:31',
                 'id' => '595a48d0-6655-4e6b-982d-1743b6bc414a',
                 'img' => NULL,
-                'slug' => 'siapa-saja-penerima-kur',
-                'title' => 'Siapa saja penerima KUR ?',
+                'title' => 'nahlo',
+                'slug' => 'Siapa saja penerima KUR ?',
                 'type' => 'TESTIMONIAL',
                 'updated_at' => '2021-12-06 01:58:31',
         ]);
@@ -46,20 +46,20 @@ class PageTableSeeder extends Seeder
                 'created_at' => '2021-12-06 01:58:31',
                 'id' => '595a48d0-6655-4e6b-982d-1743b6bc414a',
                 'img' => NULL,
-                'slug' => 'siapa-saja-penerima-kur',
-                'title' => 'Siapa saja penerima KUR DATA KEDUA ?',
+                'title' => 'Tia',
+                'slug' => 'Siapa saja penerima KUR DATA KEDUA ?',
                 'type' => 'TESTIMONIAL',
                 'updated_at' => '2021-12-06 01:58:31',
         ]);
 
         Page::create([
                 'category_news_id' => NULL,
-                'content' => '<ul style="margin-bottom: 1rem; color: rgb(38, 59, 94); font-family: Quicksand, sans-serif; font-size: 16px;"><li>Usaha mikro, kecil, dan menengah;</li><li>Calon tenaga kerja Indonesia yang akan bekerja di luar negeri;</li><li>Calon pekerja magang di luar negeri;</li><li>Anggota keluarga dari karyawan/karyawati yang berpenghasilan tetap atau bekerja sebagai tenaga kerja indonesia;</li><li>Tenaga kerja Indonesia yang pernah bekerja di luar negeri;</li><li>Pekerja yang terkena pemutusan hubungan kerja;</li><li>Usaha mikro, kecil, dan menengah di wilayah perbatasan dengan negara lain; dan/atau</li><li>Kelompok Usaha seperti Kelompok Usaha Bersama (KUBE), Gabungan Kelompok Tani dan Nelayan ( Gapoktan), dan Kelompok Usaha lainnya.</li></ul>',
+                'content' =>'Pelayanan cepat dan mudah',
                 'created_at' => '2021-12-06 01:58:31',
                 'id' => '595a48d0-6655-4e6b-982d-1743b6bc414a',
                 'img' => NULL,
-                'slug' => 'siapa-saja-penerima-kur',
-                'title' => 'Siapa saja penerima KUR DATA KEDUA ? data ke 3 ',
+                'title' => 'Dandi',
+                'slug' => 'Siapa saja penerima KUR DATA KEDUA ? data ke 3 ',
                 'type' => 'TESTIMONIAL',
                 'updated_at' => '2021-12-06 01:58:31',
         ]);

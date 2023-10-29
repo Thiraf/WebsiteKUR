@@ -128,6 +128,24 @@
 
                 },
 
+                deleteItem(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+                let self = this;
+                axios
+                    .delete("{{ url('/') }}/api/termin/" + id)
+                    .then(function (response) {
+                        if (!response.data.error) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        self.dataTable.ajax.reload();
+                    });
+            }
+        },
+
                 submitForm() {
 
                     if(!this.isEdit) {
@@ -186,6 +204,11 @@
             let id = $(this).data('id')
             app.editTermin(id)
          })
+
+         $(document).on('click', '.delete-item', function() {
+    let id = $(this).data('id');
+    app.deleteItem(id);
+});
 
 </script>
 @endpush

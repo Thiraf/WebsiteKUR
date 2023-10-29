@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\TerminController;
 use App\Http\Controllers\Backend\BankController;
 use App\Http\Controllers\Backend\BusinessTypeController;
+use App\Http\Controllers\Backend\UserController;
 
 use Illuminate\Support\Facades\File;
 
@@ -130,6 +131,7 @@ Route::get('credit-request/{id}/show',[CreditRequestController::class], 'show')-
 
 Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () {
 // Route::prefix('manage')->name('manage.')->group(function () {
+// Route::prefix('manage')->name('manage.')->group(function () {
     // Route::resource('credit-request',CreditRequestController::class);
     Route::resource('/', HomeController::class);
 
@@ -157,9 +159,10 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
             // Master Data
             // Pengguna
-            Route::resource('user', UserController::class, [
-                'names' => 'user'
-            ]);
+            // Route::resource('user', UserController::class, [
+            //     'names' => 'user'
+            // ]);
+            Route::resource('user', UserController::class);
 
 
 

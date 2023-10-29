@@ -133,6 +133,7 @@ class TerminController extends Controller
         }
 
         $data->delete($id);
+        // Termin::where('id', $id)->forceDelete();
 
         return $this->successResponseMsg("Data berhasil di hapus");
     }

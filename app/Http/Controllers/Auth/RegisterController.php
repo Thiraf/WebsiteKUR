@@ -25,8 +25,6 @@ class RegisterController extends Controller
     public function actionregister(Request $request)
     {
 
-
-
         $user = User::create([
             'email' => $request->email,
             'name' => $request->username,

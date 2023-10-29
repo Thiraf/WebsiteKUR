@@ -83,6 +83,8 @@ Route::resource('statistik', StatistikController::class);
 
 // authorization
 Route::name('api.')->group(function () {
+
+    Route::get('financial-instituion-umi/list/search','FinancialInstitutionUmiController@search')->name('umi.search');
 // Route::namespace('Api')->middleware('auth')->prefix('api')->name('api.')->group(function () {
 // Route::namespace('Api')->prefix('api')->name('api.')->group(function () {
 
