@@ -46,40 +46,40 @@ class CreditRequest extends Model
 
     public function pic()
     {
-        return $this->belongsTo('App\User','pic_contact');
+        return $this->belongsTo('App\Models\User','pic_contact');
     }
 
     public function regency()
     {
-        return $this->belongsTo('App\Regency','regency_id');
+        return $this->belongsTo('App\Models\Regency','regency_id');
     }
     public function district()
     {
-        return $this->belongsTo('App\District','district_id');
+        return $this->belongsTo('App\Models\District','district_id');
     }
     public function termin()
     {
-        return $this->belongsTo('App\Termin','tenor');
+        return $this->belongsTo('App\Models\Termin','tenor');
     }
     public function member()
     {
-        return $this->belongsTo('App\Member','member_id');
+        return $this->belongsTo('App\Models\Member','member_id');
     }
     public function kur_type()
     {
-        return $this->belongsTo('App\KurType','kur_type_id');
+        return $this->belongsTo('App\Models\KurType','kur_type_id');
     }
     public function business()
     {
-        return $this->belongsTo('App\BusinessType','business_type_id');
+        return $this->belongsTo('App\Models\BusinessType','business_type_id');
     }
     public function business_permit()
     {
-        return $this->belongsTo('App\BusinessPermit','business_permit_id');
+        return $this->belongsTo('App\Models\BusinessPermit','business_permit_id');
     }
     public function bank()
     {
-        return $this->belongsTo('App\Bank','bank_id');
+        return $this->belongsTo('App\Models\Bank','bank_id');
     }
 
 

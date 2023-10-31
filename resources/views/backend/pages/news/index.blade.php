@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Daftar Berita
@@ -20,10 +20,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar Berita 
+                    Daftar Berita
                 </div>
                 <div class="table-responsive">
-                    
+
                     <table class="table table-bordered"  id="datatable">
                         <thead>
                             <tr>
@@ -63,7 +63,7 @@
                     isEdit : false,
                     idEdit : null,
                     datatable : null,
-                    dropify : null              
+                    dropify : null
                 }
             },
             mounted() {
@@ -78,7 +78,7 @@
                     ]
                 });
 
-                this.dropify = $(".dropify").dropify() 
+                this.dropify = $(".dropify").dropify()
                 this.loadDataCategory()
             },
             methods : {
@@ -95,7 +95,7 @@
                         })
                         .catch(function (error) {
                             // handle error
-                            
+
                         })
                         .finally(function () {
                             // always executed
@@ -116,21 +116,21 @@
 			url_yt : null,
                     },
                     this.isEdit = false,
-                    this.idEdit = null  
-                    $(".dropify-clear").trigger("click");    
+                    this.idEdit = null
+                    $(".dropify-clear").trigger("click");
                     this.dropify = $(".dropify").dropify()
                     $("#inputJawaban").html("")
                 },
 
                 editItem(id) {
-                    
+
                     $("#form-news-modal").modal('show')
-                    
+
                     let self = this
                     this.dropify = this.dropify.data('dropify');
                     this.dropify.resetPreview();
                     this.dropify.clearElement();
-                    
+
                     axios.get('{{url("/")}}/api/news/'+id)
                         .then(function (response) {
                             // handle success
@@ -147,7 +147,7 @@
                                 self.isEdit = true,
                                 self.idEdit = response.data.data.id
                                 $("#inputJawaban").html(response.data.data.content)
-                                
+
                                 self.dropify.settings.defaultFile = response.data.data.img;
                                 self.dropify.destroy();
                                 self.dropify.init();
@@ -158,13 +158,34 @@
                         })
                         .catch(function (error) {
                             // handle error
-                            
+
                         })
                         .finally(function () {
                             // always executed
                         });
-                    
+
                 },
+
+                deleteItem(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+                let self = this;
+                axios
+                    .delete("{{ url('/') }}/api/news/" + id)
+                    .then(function (response) {
+                        if (!response.data.error) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        self.dataTable.ajax.reload();
+                    });
+            }
+        },
+
+
+
 
                 submitForm() {
 
@@ -189,7 +210,7 @@
                         .then(function (response) {
                             console.log(response)
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -198,10 +219,10 @@
                         .finally(function () {
                             $("#form-news-modal").modal('hide')
                             $("#notification").fadeIn()
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             self.dataTable.ajax.reload();
 
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             $(".btn-save").addClass('btn-addon')
                             $(".btn-save").removeAttr('disabled')
                             $(".btn-save").html('<i class="fa fa-save"></i> Simpan')
@@ -228,7 +249,7 @@
                         .then(function (response) {
                             console.log(response)
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -237,10 +258,10 @@
                         .finally(function () {
                             $("#form-news-modal").modal('hide')
                             $("#notification").fadeIn()
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             self.dataTable.ajax.reload();
 
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             $(".btn-save").addClass('btn-addon')
                             $(".btn-save").removeAttr('disabled')
                             $(".btn-save").html('<i class="fa fa-save"></i> Simpan')
@@ -258,5 +279,18 @@
             app.editItem(id)
          })
 
+         $(document).on('click', '.delete-item', function() {
+    let id = $(this).data('id');
+    app.deleteItem(id);
+});
+
+
+
+
+
+
+
 </script>
 @endpush
+
+

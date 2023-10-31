@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\UserPostalCode;
+use Auth;
 
 class UserController extends Controller
 {
@@ -20,18 +21,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        dd(Auth()->user());
         $data = User::with('userpostalcode')
                     ->select('users.*','banks.name as bank_name','districts.name as district_name','regencies.name as regency_name','roles.name as role_name')
                     ->leftJoin('banks','banks.id','=','users.bank_id')
                     ->leftJoin('roles','roles.id','=','users.role_id')
                     ->leftJoin('districts','districts.id','=','users.district_id')
                     ->leftJoin('regencies','regencies.id','=','users.regency_id')
-                    ->where('users.id','!=',auth()->user()->id)
+                    ->where('users.id','!=',Auth()->user()->id)
                     ->orderBy('users.name');
 
-        if(auth()->user()->role_id == 1) {
-            $data->where('bank_id',auth()->user()->bank_id)
+        if(Auth()->user()->role_id == 1) {
+            $data->where('bank_id',Auth()->user()->bank_id)
                 ->where('role_id',2);
         }
 

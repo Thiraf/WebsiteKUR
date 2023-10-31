@@ -1,7 +1,9 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Detail Pengajuan {{$data->registration_number}}
+
+
 @endsection
 
 @section('actions')

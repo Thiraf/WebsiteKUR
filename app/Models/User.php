@@ -64,17 +64,17 @@ class User extends Authenticatable
 
     public function bank()
     {
-      return $this->belongsTo('App\Bank')->withTrashed();
+      return $this->belongsTo('App\Models\Bank')->withTrashed();
     }
 
     public function userpostalcode()
     {
-      return $this->hasMany('App\UserPostalCode', 'user_id');
+      return $this->hasMany('App\Models\UserPostalCode', 'user_id');
     }
 
     public function roles()
       {
-          return $this->belongsTo('App\Role', 'role_id');
+          return $this->belongsTo('App\Models\Role', 'role_id');
       }
 
 }

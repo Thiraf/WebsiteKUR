@@ -21,7 +21,7 @@
                 <h4 class="modal-title">@{{ !isEdit ? 'Tambah Berita' : 'Edit Berita' }}</h4>
                 <button type="button" @click="reset" class="close text-right" data-dismiss="modal">&times;</button>
             </div>
-            
+
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="row">
@@ -46,7 +46,7 @@
                             <label for="">Konten</label>
                             <div class="">
                                 <div class="btn-toolbar m-b-sm btn-editor" data-role="editor-toolbar" data-target="#editor">
-                               
+
                                 <div class="btn-group dropdown" dropdown>
                                     <a class="btn btn-default" dropdown-toggle data-toggle="dropdown" tooltip="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
@@ -85,7 +85,7 @@
                                     </div>
                                     <a class="btn btn-default" data-edit="unlink" tooltip="Remove Hyperlink"><i class="fa fa-cut"></i></a>
                                 </div>
-                                
+
                                 <div class="btn-group"  style="margin-bottom : 10px">
                                     <a class="btn btn-default" tooltip="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
                                     <input type="file" data-edit="insertImage" style="position:absolute; opacity:0; width:41px; height:34px" />
@@ -96,35 +96,35 @@
                                 </div>
                                 </div>
                                 <div ui-jq="wysiwyg" class="form-control" style="overflow:scroll;height:200px;max-height:200px" id="inputJawaban">
-                                    
+
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                     </div>
-		  
+
 		   <div class="col-md-4">
 			<div class="form-group">
 			 <label for="">Embedded Youtube</label>
   				<input type="text" class="form-control" v-model="news.url_yt">
         		</div>
 		   </div>
-				
+
 	            <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Foto</label>
                             <input type="file" class="dropify" :required="!isEdit" name="photo"  data-max-file-size="1M" data-allowed-file-extensions="png jpg jpeg" >
-                        </div>  
+                        </div>
                     </div>
-                </div>             
+                </div>
             </div>
-            
+
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-addon" data-dismiss="modal" @click="reset()"><i class="fa fa-arrow-left"></i> Batal</button>
                 <button type="submit" class="btn btn-primary btn-addon btn-save"><i class="fa fa-save"></i> Simpan</button>
             </div>
         </form>
-            
+
         </div>
     </div>
 </div>
@@ -136,3 +136,6 @@
     // });
 </script>
 @endpush
+
+
+

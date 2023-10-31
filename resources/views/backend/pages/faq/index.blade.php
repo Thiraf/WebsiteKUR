@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Daftar FAQ
@@ -20,10 +20,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar FAQ 
+                    Daftar FAQ
                 </div>
                 <div class="table-responsive">
-                    
+
                     <table class="table table-bordered"  id="datatable">
                         <thead>
                             <tr>
@@ -60,7 +60,7 @@
                     isEdit : false,
                     idEdit : null,
                     datatable : null,
-                    dropify : null              
+                    dropify : null
                 }
             },
             mounted() {
@@ -72,14 +72,14 @@
                     columns: [
                         { data: "action", name: "action", orderable: false },
                         { data: "title", name: "title", orderable: false },
-                    
+
                     // { data: "id_kepala", name: "id_kepala" }
                     ]
                 });
 
                 this.dropify = $(".dropify").dropify()
 
-                
+
             },
             methods : {
 
@@ -96,18 +96,18 @@
                         id : null,
                     },
                     this.isEdit = false,
-                    this.idEdit = null  
-                    $(".dropify-clear").trigger("click");    
+                    this.idEdit = null
+                    $(".dropify-clear").trigger("click");
                     this.dropify = $(".dropify").dropify()
                     $("#inputJawaban").html("")
                 },
 
                 editItem(id) {
-                    
+
                     $("#form-faq-modal").modal('show')
-                    
+
                     let self = this
-                    
+
                     axios.get('{{url("/")}}/api/faq/'+id)
                         .then(function (response) {
                             // handle success
@@ -121,7 +121,7 @@
 
                                 self.isEdit = true,
                                 self.idEdit = response.data.data.id
-                                
+
 
                             } else {
 
@@ -129,13 +129,34 @@
                         })
                         .catch(function (error) {
                             // handle error
-                            
+
                         })
                         .finally(function () {
                             // always executed
                         });
-                    
+
                 },
+
+                deleteItem(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+                let self = this;
+                axios
+                    .delete("{{ url('/') }}/api/faq/" + id)
+                    .then(function (response) {
+                        if (!response.data.error) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        self.dataTable.ajax.reload();
+                    });
+            }
+        },
+
+
+
 
                 submitForm() {
 
@@ -145,7 +166,7 @@
                     if(!this.isEdit) {
                         let self = this
                         let formData = new FormData();
-                        
+
                         formData.append("title", self.faq.title);
                         formData.append("content", $("#inputJawaban").html());
                         axios.post('{{url("/")}}/api/faq', formData, {
@@ -156,7 +177,7 @@
                         .then(function (response) {
                             console.log(response)
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -165,10 +186,10 @@
                         .finally(function () {
                             $("#form-faq-modal").modal('hide')
                             $("#notification").fadeIn()
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             self.dataTable.ajax.reload();
 
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             $(".btn-save").addClass('btn-addon')
                             $(".btn-save").removeAttr('disabled')
                             $(".btn-save").html('<i class="fa fa-save"></i> Simpan')
@@ -191,7 +212,7 @@
                         .then(function (response) {
                             console.log(response)
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -200,10 +221,10 @@
                         .finally(function () {
                             $("#form-faq-modal").modal('hide')
                             $("#notification").fadeIn()
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             self.dataTable.ajax.reload();
 
-                            $(".dropify-clear").trigger("click");    
+                            $(".dropify-clear").trigger("click");
                             $(".btn-save").addClass('btn-addon')
                             $(".btn-save").removeAttr('disabled')
                             $(".btn-save").html('<i class="fa fa-save"></i> Simpan')
@@ -220,6 +241,11 @@
             let id = $(this).data('id')
             app.editItem(id)
          })
+
+         $(document).on('click', '.delete-item', function() {
+    let id = $(this).data('id');
+    app.deleteItem(id);
+});
 
 </script>
 @endpush

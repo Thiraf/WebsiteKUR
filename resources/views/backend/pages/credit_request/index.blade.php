@@ -77,9 +77,9 @@
                     <table class="table table-bordered"  id="datatable">
                         <thead>
                             <tr>
-                                @if(auth()->user()->role_id != 0 && auth()->user()->role_id != 3)
+                                {{-- @if(auth()->user()->role_id != 0 && auth()->user()->role_id != 3) --}}
                                 <th width="250">Action</th>
-                                @endif
+                                {{-- @endif --}}
                                 <th>Nomor Registrasi</th>
                                 <th>Pemohon</th>
                                 <th>Telp</th>

@@ -154,6 +154,24 @@ var app = new Vue({
 
         },
 
+        deleteItem(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+                let self = this;
+                axios
+                    .delete("{{ url('/') }}/api/testimoni/" + id)
+                    .then(function (response) {
+                        if (!response.data.error) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        self.dataTable.ajax.reload();
+                    });
+            }
+        },
+
         submitForm() {
 
             $(".btn-save").attr('disabled', 'disabled')
@@ -240,5 +258,12 @@ $(document).on('click', '.edit-item', function() {
     let id = $(this).data('id')
     app.editItem(id)
 })
+
+$(document).on('click', '.delete-item', function() {
+    let id = $(this).data('id');
+    app.deleteItem(id);
+});
+
+
 </script>
 @endpush

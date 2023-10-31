@@ -25,7 +25,7 @@ class Page extends Model
 
     public function newscategory()
     {
-        return $this->belongsTo('App\NewsCategory', 'category_news_id');
+        return $this->belongsTo('App\Models\NewsCategory', 'category_news_id');
     }
 
     protected static function boot()

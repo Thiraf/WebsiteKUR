@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('type')->nullable();
             $table->char('category_news_id',36)->nullable();
-            // $table->tinyInteger('category_news_id')->nullable();
+            $table->longText('short_description')->nullable();
+            $table->string('url_yt')->nullable();
             $table->timestamps();
         });
     }

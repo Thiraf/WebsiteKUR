@@ -19,12 +19,7 @@ use App\Http\Controllers\Api\TestimonialController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StatistikController;
 use App\Http\Controllers\Api\BusinessTypeController;
-
-// use Illuminate\Support\Facades\Route;
-
-
-
-
+use App\Http\Controllers\Api\FinancialInstitutionUmiController;
 
 
 /*
@@ -38,9 +33,6 @@ use App\Http\Controllers\Api\BusinessTypeController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 // cuma buat ngecheck di postman
 Route::post('regis', [RegisterController::class, 'create']);
@@ -55,36 +47,16 @@ Route::get('login', function () {
 })->name('login');
 
 
-// ini
-// Route::middleware('auth:sanctum')->group(function () {
-
-//     Route::middleware('admin')->group(function () {
-
-//         Route::resource('termin', TerminController::class)->names([
-//             'index' => 'api.termin.index',
-//             'destroy' => 'api.termin.destroy',
-//         ]);
-
-
-//         Route::resource('testimoni', TestimonialControler::class)->names([
-//             'destroy' => 'api.testimoni.destroy',
-//             'index' => 'api.testimoni.index',
-//         ]);;
-
-//     });
-// });
-
 
 require_once 'api.php';
 
 Route::resource('statistik', StatistikController::class);
-// Route::name('api.')->group(function () {
-// Route::get('api/business-type', BusinessTypeController::class)->name('business-type.index');
 
 // authorization
 Route::name('api.')->group(function () {
+    Route::get('financial-instituion-umi/list/search',[FinancialInstitutionUmiController::class, 'search'])->name('umi.search');
 
-    Route::get('financial-instituion-umi/list/search','FinancialInstitutionUmiController@search')->name('umi.search');
+// Route::get('financial-instituion-umi/list/search',FinancialInstitutionUmiController::class)->name('api.umi.search');
 // Route::namespace('Api')->middleware('auth')->prefix('api')->name('api.')->group(function () {
 // Route::namespace('Api')->prefix('api')->name('api.')->group(function () {
 
@@ -99,8 +71,6 @@ Route::name('api.')->group(function () {
         Route::resource('credit-request', CreditRequestController::class);
         // Riwayat Pengajuan
         Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
-
-
 
         // Route::middleware('admin01')->group(function () {
             // hanya admin 0 1 (ojk dan bank) ------------
@@ -154,62 +124,7 @@ Route::name('api.')->group(function () {
     // });
 });
 
-// disini ------ (buat coba-coba tanpa auth)
-// Route::name('api.')->group(function () {
-//     Route::resource('termin', TerminController::class);
-// });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-//     Route::resource('termin', TerminController::class);
-//     Route::resource('testimoni', TestimonialController::class);
-// });
-
-
-
-
-
-// Route::resource('testimoni', TestimonialControler::class)->names([
-//     'destroy' => 'api.testimoni.destroy',
-//     'index' => 'api.testimoni.index',
-// ]);;
-
-// route login
-// Route::get('/', function () {
-//     return response()->json([
-//         'status' => false,
-//         'message' => "akses gaboleh"
-//     ]);
-// })->name('login');
-
-// Route::resource('testimoni', TestimonialController::class)->names([
-
-//     'destroy' => 'api.testimoni.destroy',
-//     'index' => 'api.testimoni.index',
-
-// ])->middleware('auth:sanctum');
-
-
-// Route::resource('testimoni', TestimonialController::class)->middleware('auth:sanctum');
 
 
 

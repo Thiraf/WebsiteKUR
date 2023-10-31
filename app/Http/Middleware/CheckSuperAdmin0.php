@@ -30,6 +30,8 @@ class CheckSuperAdmin0
                 'status'=> false,
                 'message' => 'Anda TIDAK memiliki izin untuk mengakses ini, role != 0, middlware/CheckSuperAdmin0. ',
             ], 403);
+
+            // return response()->json(['message' => 'Not Found!'], 404);
         }
     }
 }

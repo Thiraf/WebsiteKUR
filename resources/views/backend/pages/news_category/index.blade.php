@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Daftar Kategori Berita
@@ -20,10 +20,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar Kategori Berita 
+                    Daftar Kategori Berita
                 </div>
                 <div class="table-responsive">
-                    
+
                     <table class="table table-bordered"  id="datatable">
                         <thead>
                             <tr>
@@ -57,7 +57,7 @@
                     },
                     isEdit : false,
                     idEdit : null,
-                    datatable : null              
+                    datatable : null
                 }
             },
             mounted() {
@@ -69,12 +69,12 @@
                     columns: [
                         { data: "action", name: "action", orderable: false },
                         { data: "name", name: "name", orderable: false },
-                    
+
                     // { data: "id_kepala", name: "id_kepala" }
                     ]
                 });
 
-                
+
             },
             methods : {
 
@@ -89,7 +89,7 @@
                         id : null,
                     },
                     this.isEdit = false,
-                    this.idEdit = null  
+                    this.idEdit = null
                 },
 
                 editItem(id) {
@@ -104,7 +104,7 @@
                                 }
                                 self.isEdit = true,
                                 self.idEdit = response.data.data.id
-                                
+
                                 $("#form-news-category-modal").modal('show')
 
                             } else {
@@ -113,13 +113,31 @@
                         })
                         .catch(function (error) {
                             // handle error
-                            
+
                         })
                         .finally(function () {
                             // always executed
                         });
-                    
+
                 },
+
+                deleteItem(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+                let self = this;
+                axios
+                    .delete("{{ url('/') }}/api/news-category/" + id)
+                    .then(function (response) {
+                        if (!response.data.error) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        self.dataTable.ajax.reload();
+                    });
+            }
+        },
 
                 submitForm() {
 
@@ -131,7 +149,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -154,7 +172,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -179,6 +197,13 @@
             let id = $(this).data('id')
             app.editItem(id)
          })
+
+         $(document).on('click', '.delete-item', function() {
+    let id = $(this).data('id');
+    app.deleteItem(id);
+});
+
+
 
 </script>
 @endpush

@@ -50,16 +50,20 @@ class Member extends Authenticatable
             if($creditRequest > 0){
                 $activity = Activity::where('user_id', $this->id)->orderBy('created_at', 'DESC')->first();
 
-                $activity_date = \Carbon\Carbon::parse($activity->created_at);
-                $now = \Carbon\Carbon::now();
-                $diff = $now->diffInDays($activity_date);
+                // INI DIKOMEN JD BS WKWKWKW MBOH KEKNYA CUMA BIAR GTW LAH
 
-                if($diff >= 30){
-                    return false;
-                }
-                else{
-                    return true;
-                }
+                // $activity_date = \Carbon\Carbon::parse($activity->created_at);
+                // $now = \Carbon\Carbon::now();
+                // $diff = $now->diffInDays($activity_date);
+
+                // if($diff >= 30){
+                //     return false;
+                // }
+                // else{
+                //     return true;
+                // }
+
+                return true;
             }
 
             // return $creditRequest > 0 ? true : false;

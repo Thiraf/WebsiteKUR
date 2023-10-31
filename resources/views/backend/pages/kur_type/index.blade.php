@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Daftar Jenis KUR
@@ -20,10 +20,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar Jenis KUR 
+                    Daftar Jenis KUR
                 </div>
                 <div class="table-responsive">
-                    
+
                     <table class="table table-bordered"  id="datatable">
                         <thead>
                             <tr>
@@ -61,7 +61,7 @@
                     },
                     isEdit : false,
                     idEdit : null,
-                    datatable : null              
+                    datatable : null
                 }
             },
             mounted() {
@@ -79,7 +79,7 @@
                     ]
                 });
 
-                
+
             },
             methods : {
 
@@ -96,7 +96,7 @@
                         id : null,
                     },
                     this.isEdit = false,
-                    this.idEdit = null  
+                    this.idEdit = null
                 },
 
                 editItem(id) {
@@ -113,7 +113,7 @@
                                 }
                                 self.isEdit = true,
                                 self.idEdit = response.data.data.id
-                                
+
                                 $("#form-kur-type-modal").modal('show')
 
                             } else {
@@ -122,13 +122,31 @@
                         })
                         .catch(function (error) {
                             // handle error
-                            
+
                         })
                         .finally(function () {
                             // always executed
                         });
-                    
+
                 },
+
+                deleteItem(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+                let self = this;
+                axios
+                    .delete("{{ url('/') }}/api/kur-type/" + id)
+                    .then(function (response) {
+                        if (!response.data.error) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        self.dataTable.ajax.reload();
+                    });
+            }
+        },
 
                 submitForm() {
 
@@ -141,7 +159,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -165,7 +183,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -190,6 +208,14 @@
             let id = $(this).data('id')
             app.editItem(id)
          })
+
+         $(document).on('click', '.delete-item', function() {
+    let id = $(this).data('id');
+    app.deleteItem(id);
+});
+
+
+
 
 </script>
 @endpush

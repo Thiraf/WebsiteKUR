@@ -11,6 +11,9 @@ use App\Models\User;
 use App\Models\UserPostalCode;
 use Illuminate\Support\Facades\DB;
 
+// use App\Http\Controllers\Backend\Auth;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -129,9 +132,14 @@ class CreditRequestController extends Controller
         $data['data'] = CreditRequest::find($id);
         $data['activity'] = Activity::where('ref_id', $id)->orderBy('created_at', 'DESC')->get();
 
+
         // return response()->json($data);
 
-        if(auth()->user()->role_id == 0 || (auth()->user()->role_id == 1 && auth()->user()->bank_id == $data['data']->bank_id)) {
+
+        // if(auth()->user()->role_id == 0 || (auth()->user()->role_id == 1 && auth()->user()->bank_id == $data['data']->bank_id)) {
+
+
+        if(auth()->user()->role_id == 0 || (auth()->user()->role_id == 1 && Auth::user()->bank_id == $data['data']->bank_id)) {
             return view('backend.pages.credit_request.detail',$data);
         }
         if(auth()->user()->role_id == 2 &&  auth()->user()->id == $data['data']->pic_contact) {
@@ -142,7 +150,13 @@ class CreditRequestController extends Controller
             return view('backend.pages.credit_request.detail',$data);
         }
 
+        // return view('backend.pages.credit_request.detail',$data);
+
         abort(403);
+
+        // return view('backend.pages.credit_request.history',[
+        //     'banks' => Bank::where('status', '1')->orderBy('name')->get()
+        // ]);
     }
 
     public function acceptStore(Request $request,$id)

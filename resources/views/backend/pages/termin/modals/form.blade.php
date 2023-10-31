@@ -18,7 +18,7 @@
                 <h4 class="modal-title">@{{ !isEdit ? 'Tambah Termin' : 'Edit Termin' }}</h4>
                 <button type="button" @click="reset" class="close text-right" data-dismiss="modal">&times;</button>
             </div>
-            
+
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="form-group">
@@ -32,16 +32,16 @@
                         <span class="input-group-addon">Bulan</span>
                     </div>
                 </div>
-                                    
+
             </div>
-            
+
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-addon" data-dismiss="modal" @click="reset()"><i class="fa fa-arrow-left"></i> Batal</button>
                 <button type="submit" class="btn btn-primary btn-addon"><i class="fa fa-save"></i> Simpan</button>
             </div>
         </form>
-            
+
         </div>
     </div>
 </div>

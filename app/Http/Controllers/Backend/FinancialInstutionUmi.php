@@ -14,7 +14,7 @@ class FinancialInstutionUmi extends Controller
     {
         //
         return view('backend.pages.financial_instituion_umi.index');
-    
+
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Tolak Pengajuan
@@ -34,7 +34,7 @@
                                 <div class="col-md-3">
                                         <button type="submit" class="btn btn-danger btn-addon " style=""><i class="fa fa-times"></i> Tolak</button>
                                 </div>
-                            </div>   
+                            </div>
                     </form>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-md-6">
                                 <table>
-        
+
                                     <tr>
                                         <td width="120">Desa</td>
                                         <td width="15">:</td>
@@ -115,13 +115,13 @@
                                         <td width="15">:</td>
                                         <th>{{$data->address}}</th>
                                     </tr>
-                                            
+
                                     <tr>
                                         <td width="120">Nominal</td>
                                         <td width="15">:</td>
                                         <th>Rp {{$data->amount}}</th>
                                     </tr>
-        
+
                                     <tr>
                                         <td width="120">Bank Penyalur</td>
                                         <td width="15">:</td>
@@ -149,14 +149,14 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>   
+                        </div>
                 </div>
             </div>
         </div>
     </div> --}}
 
     @include('backend.pages.credit_request.modals.detail')
-    
+
 
 
     @include('backend.pages.credit_request.modals.detail')

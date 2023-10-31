@@ -35,6 +35,7 @@ class Bank extends Model
     public function creditRequests()
     {
         return $this->hasMany(CreditRequest::class, 'bank_id', 'id');
+        // return $this->hasMany(CreditRequest::class, 'id', 'bank_id');
     }
 
 

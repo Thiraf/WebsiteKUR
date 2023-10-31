@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Daftar Member
@@ -20,10 +20,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Daftar Member 
+                    Daftar Member
                 </div>
                 <div class="table-responsive">
-                    
+
                     <table class="table table-bordered"  id="datatable">
                         <thead>
                             <tr>
@@ -72,7 +72,7 @@
                     },
                     isEdit : false,
                     idEdit : null,
-                    datatable : null              
+                    datatable : null
                 }
             },
             mounted() {
@@ -92,7 +92,7 @@
                     ]
                 });
 
-                
+
             },
             methods : {
 
@@ -112,7 +112,7 @@
                                 is_blocked : response.data.data.is_blocked,
                             }
                             self.idEdit = response.data.data.id
-                            
+
                             $("#form-member-block-modal").modal('show')
 
                         } else {
@@ -121,7 +121,7 @@
                     })
                     .catch(function (error) {
                         // handle error
-                        
+
                     })
                     .finally(function () {
                         // always executed
@@ -140,7 +140,7 @@
                         dob: null,
                     },
                     this.isEdit = false,
-                    this.idEdit = null  
+                    this.idEdit = null
                 },
 
                 editItem(id) {
@@ -162,7 +162,7 @@
                                 }
                                 self.isEdit = true,
                                 self.idEdit = response.data.data.id
-                                
+
                                 $("#form-member-modal").modal('show')
 
                             } else {
@@ -171,13 +171,31 @@
                         })
                         .catch(function (error) {
                             // handle error
-                            
+
                         })
                         .finally(function () {
                             // always executed
                         });
-                    
+
                 },
+
+                deleteItem(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+                let self = this;
+                axios
+                    .delete("{{ url('/') }}/api/member/" + id)
+                    .then(function (response) {
+                        if (!response.data.error) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        self.dataTable.ajax.reload();
+                    });
+            }
+        },
 
                 submitForm() {
 
@@ -188,7 +206,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -210,7 +228,7 @@
                         })
                         .then(function (response) {
                             if(!response.data.data.error) {
-                                
+
                             }
                         })
                         .catch(function (error) {
@@ -262,6 +280,11 @@
             let id = $(this).data('id')
             app.blockItem(id)
          })
+
+         $(document).on('click', '.delete-item', function() {
+    let id = $(this).data('id');
+    app.deleteItem(id);
+});
 
 </script>
 @endpush

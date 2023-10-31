@@ -21,6 +21,7 @@ class TerminController extends Controller
         //
 
         $data = Termin::orderBy('value')->get();
+        
 
         return datatables()->of($data)
                 ->addColumn('action',function($data){

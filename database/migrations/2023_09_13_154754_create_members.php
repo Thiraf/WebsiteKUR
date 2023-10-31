@@ -24,6 +24,12 @@ return new class extends Migration
             $table->date('dob');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->string('forgot_token')->nullable();
+            $table->boolean('is_blocked')->default(1);
+            $table->boolean('is_active')->default(0);
+
+
         });
     }
 

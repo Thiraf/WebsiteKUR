@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layout.main')
 
 @section('title')
     Terima Pengajuan
@@ -52,7 +52,7 @@
                                         <button type="submit" class="btn btn-success btn-addon mt-4" style="margin-top : 25px"><i class="fa fa-check"></i> Setujui</button>
                                     </div>
                                 </div>
-                            </div>   
+                            </div>
                     </form>
                 </div>
             </div>
@@ -67,6 +67,6 @@
 
 @push('scripts')
 <script>
-  
+
 </script>
 @endpush

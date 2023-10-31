@@ -16,7 +16,9 @@ class MemberController extends Controller
     {
         //
 
-        $data = Member::orderBy('full_name')->get();
+        // $data = Member::orderBy('full_name')->get();
+        $data = Member::get();
+
 
         return datatables()->of($data)
                 ->addColumn('action',function($data){
