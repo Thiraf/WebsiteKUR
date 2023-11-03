@@ -40,10 +40,6 @@ class StatistikController extends Controller
     ->orderBy('name', 'asc')
     ->get();
 
-    // $banks = $banks->filter(function ($bank) {
-    //     return $bank->credit_requests_count > 0;
-    // });
-
 
     // jumlah SEMUA STATUS PENGAJUAN (bisa diifilter) (3)
     $count1a = CreditRequest::where('created_at', '>=', $DaysAgo)
@@ -66,12 +62,18 @@ class StatistikController extends Controller
         ->where('status', 'DITOLAK')
         ->count();
 
+    // dipending
+    $count5a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
+        ->where('status', 'DIPENDING')
+        ->count();
+
     $jumlah_status = [];
     $jumlah_status[] = [
         'diajukan' => $count1a,
         'diterima' => $count2a,
         'diproses' => $count3a,
         'ditolak' => $count4a,
+        'dipending' => $count5a
     ];
 
     // Jumlah Pengajuan Peminjaman dalam 7 Hari Terakhir (4)
@@ -99,19 +101,24 @@ class StatistikController extends Controller
             ->where('status', 'DITOLAK')
             ->count();
 
+        // dipending
+        $count5 = CreditRequest::whereDate('created_at', $date)
+            ->where('status', 'DIPENDING')
+            ->count();
+
         $dataStatus7[] = [
             'date' => $date->toDateString(),
             'diajukan' => $count1,
-            'diterima' => $count2,
+            'disetujui' => $count2,
             'diproses' => $count3,
             'ditolak' => $count4,
+            'dipending' => $count5
         ];
 
         $dataPengajuan7[] = [
             'date' => $date->toDateString(),
             'diajukan' => $count1,
         ];
-
     }
 
 
@@ -126,9 +133,6 @@ class StatistikController extends Controller
         ->where('status', 'DIAJUKAN')
         ->count();
 
-    // $todayCount = 2;
-    // $previousDayCount = 5;
-
     if ($previousDayCount > 0) {
         $percentIncrease = (($todayCount - $previousDayCount) / $previousDayCount) * 100;
     } elseif ($previousDayCount == 0 && $todayCount > 0) {
@@ -136,15 +140,6 @@ class StatistikController extends Controller
     } else if ($previousDayCount == 0 && $todayCount == 0) {
         $percentIncrease = 0;
     }
-
-    // $response = [
-    //     'today' => $todayCount,
-    //     'prevday' => $previousDayCount,
-    //     'growth' => $percentIncrease,
-    // ];
-
-    // // return response()->json($response);
-
 
     $data = [
         'kurTypes' => $kurTypes->map(function ($kurType) {
@@ -161,12 +156,7 @@ class StatistikController extends Controller
                 'credit_request_count' => $bank->credit_requests_count,
             ];
         }),
-        // 'data_pengajuan' =>
 
-        // 'diajuakan7daysAgo' => $dataDiajukan,
-        // 'ditolak7daysAgo' => $dataDitolak,
-        // 'diterima7daysAgo' => $dataDiterima,
-        // 'diproses7daysAgo' => $dataDiproses,
         'data_status' => $jumlah_status,
         'jumlah_pengajuan_peminjaman_dalam_7_hari_terakhir' => $dataPengajuan7,
         'data_pengajuan_dalam_7_hari_terakhir' => $dataStatus7,

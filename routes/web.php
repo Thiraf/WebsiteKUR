@@ -22,6 +22,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Api\UserController as UserApiController;
 use App\Http\Controllers\Api\TerminController as TerminApiController;
 
+use App\Http\Controllers\Api\MemberController as MemberApiController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -117,7 +121,7 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
 
                 // MEMBER
-                // Data Member (DONE tp authnya gajalan, datatable error, cuma bisa dipake yang rolenya selain 2)
+                // Data Member (DONE)
                 Route::resource('member', MemberController::class);
 
 

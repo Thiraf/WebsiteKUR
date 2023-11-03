@@ -222,7 +222,13 @@
             mounted() {
                 this.dataTable = $("#datatable").DataTable({
 
+
+
+
+
                     ajax: "{{ route('manage.user-api.index') }}",
+
+
                     processing: true,
                     serverSide : true,
                     order: [[ 1, "asc" ]],
@@ -304,7 +310,7 @@
                     this.dropify = this.dropify.data('dropify');
                     this.dropify.resetPreview();
                     this.dropify.clearElement();
-                    axios.get('{{url("/")}}/api/user/'+id)
+                    axios.get('{{url("/")}}/manage.user-api/'+id)
                         .then(function (response) {
                             // handle success
                             if(!response.error) {
@@ -414,7 +420,7 @@
                         formData.append("district_id", self.user.district_id);
                         formData.append("postal_code", self.form.postal_code);
                         formData.append("_method", "PUT");
-                        axios.post('{{url("/")}}/api/user/'+self.idEdit, formData, {
+                        axios.post('{{url("/")}}/manage.user-api/user/'+self.idEdit, formData, {
                             headers: {
                                 'Content-Type': 'multipart/form-data',
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

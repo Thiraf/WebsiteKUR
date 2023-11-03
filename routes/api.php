@@ -53,6 +53,7 @@ require_once 'api.php';
 Route::resource('statistik', StatistikController::class);
 
 // authorization
+// Route::name('api.')->middleware('auth')->group(function () {
 Route::name('api.')->group(function () {
     Route::get('financial-instituion-umi/list/search',[FinancialInstitutionUmiController::class, 'search'])->name('umi.search');
 

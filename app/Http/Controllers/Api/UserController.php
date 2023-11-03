@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        dd(Auth()->user());
+        // dd(Auth()->user());
         $data = User::with('userpostalcode')
                     ->select('users.*','banks.name as bank_name','districts.name as district_name','regencies.name as regency_name','roles.name as role_name')
                     ->leftJoin('banks','banks.id','=','users.bank_id')
