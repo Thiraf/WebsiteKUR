@@ -31,6 +31,9 @@ class User extends Authenticatable
         'district_id',
     ];
 
+    protected $keyType = 'string';
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that should be hidden for serialization.
      *

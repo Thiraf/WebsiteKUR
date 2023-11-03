@@ -65,8 +65,8 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
 
 
-
 Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () {
+// Route::prefix('manage')->name('manage.')->group(function () {
     Route::resource('/', HomeController::class);
 
     // Route::middleware('admin0123')->group(function () {
