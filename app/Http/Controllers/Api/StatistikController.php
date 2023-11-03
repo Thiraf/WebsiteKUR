@@ -86,9 +86,10 @@ class StatistikController extends Controller
         $count1 = CreditRequest::whereDate('created_at', $date)
             ->where('status', 'DIAJUKAN')
             ->count();
-        // data diterima
+
+        // data disetujui
         $count2 = CreditRequest::whereDate('created_at', $date)
-            ->where('status', 'DITERIMA')
+            ->where('status', 'DISETUJUI')
             ->count();
 
         // diproses
