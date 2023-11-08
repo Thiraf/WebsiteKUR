@@ -172,7 +172,7 @@
             },
             mounted() {
                 this.dataTable = $("#datatable").DataTable({
-                    ajax: "{{ route('api.credit-request.index') }}",
+                    ajax: "{{ route('manage.credit-request-api.index') }}",
                     processing: true,
                     serverSide : true,
                     order: [[ 1, "asc" ]],

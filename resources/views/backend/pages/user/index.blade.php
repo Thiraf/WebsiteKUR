@@ -226,7 +226,9 @@
 
 
 
-                    ajax: "{{ route('manage.user-api.index') }}",
+                    // ajax: "{{ route('api.user.index') }}",
+
+                    ajax: "{{ route('api.user.index') }}",
 
 
                     processing: true,

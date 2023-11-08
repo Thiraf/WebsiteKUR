@@ -19,10 +19,6 @@ use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 
-use App\Http\Controllers\Api\UserController as UserApiController;
-use App\Http\Controllers\Api\TerminController as TerminApiController;
-
-use App\Http\Controllers\Api\MemberController as MemberApiController;
 
 
 
@@ -49,21 +45,6 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 
-// still figuring out kenapa ini gabisa masuk ke function prefix manage
-// Route::get('credit-request/{id}/confirm', [CreditRequestController::class], 'confirm')->name('manage.credit-request.confirm');
-// Route::get('credit-request/{id}/redirect',[CreditRequestController::class],'redirect')->name('manage.credit-request.redirect');
-// Route::get('credit-request/{id}/accept',[CreditRequestController::class],'accept')->name('manage.credit-request.accept');
-// Route::get('credit-request/{id}/pending',[CreditRequestController::class],'pending')->name('manage.credit-request.pending');
-// Route::get('credit-request/{id}/reject',[CreditRequestController::class],'reject')->name('manage.credit-request.reject');
-
-#suspect untuk route manage.credit-request.show
-#found a problem in Api/CreditRequestController.php, need to explicity declare the name route i guess
-// Route::get('credit-request',[CreditRequestController::class], 'show')->name('manage.credit-request.show');
-#or
-// Route::get('credit-request/{id}/show',[CreditRequestController::class], 'show')->name('manage.credit-request.show');
-#lebih make sense yg bawahhhh ini but didnt find any "{id}/show" route di file project sebelumnya
-
-
 
 Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () {
 // Route::prefix('manage')->name('manage.')->group(function () {
@@ -77,15 +58,32 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
         // KUR
         // Pengajuan KUR
+
         // Riwayat Pengajuan
-        // Route::resource('credit-request', CreditRequestController::class, [
-        //     'names' => 'manage.credit-request'
-        // ]);
+        Route::get('credit-request/show{id}', [CreditRequestController::class, 'show'])->name('credit-request.show');
+
         Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
 
         Route::get('manage/credit-request', [CreditRequestController::class, 'index'])->name('credit-request.index');
 
         Route::get('credit-request/export', [CreditRequestController::class, 'exportExcel'])->name('credit-request.export');
+
+        Route::get('credit-request/{id}/confirm', [CreditRequestController::class, 'confirm'])->name('credit-request.confirm');
+
+        Route::get('credit-request/{id}/redirect',[CreditRequestController::class, 'redirect'])->name('credit-request.redirect');
+
+        Route::get('credit-request/{id}/accept',[CreditRequestController::class, 'accept'])->name('credit-request.accept');
+
+        Route::get('credit-request/{id}/pending',[CreditRequestController::class, 'pending'])->name('credit-request.pending');
+
+        Route::get('credit-request/{id}/process',[CreditRequestController::class, 'processes'])->name('credit-request.process');
+
+        Route::get('credit-request/{id}/delete',[CreditRequestController::class, 'delete'])->name('credit-request.delete');
+
+        Route::get('credit-request/{id}/reject',[CreditRequestController::class, 'reject'])->name('credit-request.reject');
+
+        // Route::resource('credit-request-api', CreditRequestApiController::class);
+
 
 
 
@@ -94,7 +92,6 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
             // Master Data
             // Pengguna
-            Route::resource('user-api',UserApiController::class);
             Route::resource('user', UserController::class);
 
             // Route::middleware('superadmin0')->group(function () {
