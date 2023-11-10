@@ -133,11 +133,9 @@
                 }
             }
          });
-
          $(document).on('click','.show-detail',function(){
             let id = $(this).data('id')
             app.showData(id);
          })
-
 </script>
 @endpush

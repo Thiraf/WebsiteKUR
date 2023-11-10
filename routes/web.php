@@ -21,8 +21,6 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,7 +98,8 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
                 // DADHBOARD
                 // Data Visualisasi Statistik
 
-                // MASTER DATA CRUD (DONE)
+                // MASTER DATA CRUD
+                // Bank Penyalur KUR (DONE)
                 Route::resource('bank', BankController::class);
 
                 // Jenis Usaha (DONE)
