@@ -66,6 +66,13 @@
                             <span class="">Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{--nanti diisi --}}">
+                            {{-- <b class="badge bg-info pull-right">9</b> --}}
+                            <i class="fa fa-pie-chart"></i>
+                            <span class="">Statistik</span>
+                        </a>
+                    </li>
 
                     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                         <span>Master Data</span>

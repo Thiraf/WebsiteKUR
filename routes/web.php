@@ -45,113 +45,111 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
 
 use App\Http\Controllers\Backend\StatistikController;
+
 Route::get('statistik', [StatistikController::class, 'index']);
 
 
 
 Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () {
-// Route::prefix('manage')->name('manage.')->group(function () {
+    // Route::prefix('manage')->name('manage.')->group(function () {
     Route::resource('/', HomeController::class);
 
     // Route::middleware('admin0123')->group(function () {
-        // semua admin -------------
+    // semua admin -------------
 
-        // Dashboard
-        // Modul Data
+    // Dashboard
+    // Modul Data
 
-        // KUR
-        // Pengajuan KUR
+    // KUR
+    // Pengajuan KUR
 
-        // Riwayat Pengajuan
-        Route::get('credit-request/show{id}', [CreditRequestController::class, 'show'])->name('credit-request.show');
+    // Riwayat Pengajuan
+    Route::get('credit-request/show{id}', [CreditRequestController::class, 'show'])->name('credit-request.show');
 
-        Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
+    Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
 
-        Route::get('manage/credit-request', [CreditRequestController::class, 'index'])->name('credit-request.index');
+    Route::get('manage/credit-request', [CreditRequestController::class, 'index'])->name('credit-request.index');
 
-        Route::get('credit-request/export', [CreditRequestController::class, 'exportExcel'])->name('credit-request.export');
+    Route::get('credit-request/export', [CreditRequestController::class, 'exportExcel'])->name('credit-request.export');
 
-        Route::get('credit-request/{id}/confirm', [CreditRequestController::class, 'confirm'])->name('credit-request.confirm');
+    Route::get('credit-request/{id}/confirm', [CreditRequestController::class, 'confirm'])->name('credit-request.confirm');
 
-        Route::get('credit-request/{id}/redirect',[CreditRequestController::class, 'redirect'])->name('credit-request.redirect');
+    Route::get('credit-request/{id}/redirect', [CreditRequestController::class, 'redirect'])->name('credit-request.redirect');
 
-        Route::get('credit-request/{id}/accept',[CreditRequestController::class, 'accept'])->name('credit-request.accept');
+    Route::get('credit-request/{id}/accept', [CreditRequestController::class, 'accept'])->name('credit-request.accept');
 
-        Route::get('credit-request/{id}/pending',[CreditRequestController::class, 'pending'])->name('credit-request.pending');
+    Route::get('credit-request/{id}/pending', [CreditRequestController::class, 'pending'])->name('credit-request.pending');
 
-        Route::get('credit-request/{id}/process',[CreditRequestController::class, 'processes'])->name('credit-request.process');
+    Route::get('credit-request/{id}/process', [CreditRequestController::class, 'processes'])->name('credit-request.process');
 
-        Route::get('credit-request/{id}/delete',[CreditRequestController::class, 'delete'])->name('credit-request.delete');
+    Route::get('credit-request/{id}/delete', [CreditRequestController::class, 'delete'])->name('credit-request.delete');
 
-        Route::get('credit-request/{id}/reject',[CreditRequestController::class, 'reject'])->name('credit-request.reject');
+    Route::get('credit-request/{id}/reject', [CreditRequestController::class, 'reject'])->name('credit-request.reject');
 
-        // Route::resource('credit-request-api', CreditRequestApiController::class);
-
-
+    // Route::resource('credit-request-api', CreditRequestApiController::class);
 
 
-        // Route::middleware('admin01')->group(function () {
-            // hanya admin 0 1 (ojk dan bank) ------------
-
-            // Master Data
-            // Pengguna
-            Route::resource('user', UserController::class);
-
-            // Route::middleware('superadmin0')->group(function () {
-                // hanya admin 0 (ojk) ------------
-
-                // DADHBOARD
-                // Data Visualisasi Statistik
-
-                // MASTER DATA CRUD
-                // Bank Penyalur KUR (DONE)
-                Route::resource('bank', BankController::class);
-
-                // Jenis Usaha (DONE)
-                Route::resource('business-type', BusinessTypeController::class);
-
-                // Izin Usaha (DONE)
-                Route::resource('business-permit',BusinessPermitController::class);
 
 
-                // Jenis KUR (DONE)
-                Route::resource('kur-type', KurTypeController::class);
+    // Route::middleware('admin01')->group(function () {
+    // hanya admin 0 1 (ojk dan bank) ------------
 
-                // Termin (DONE)
-                Route::resource('termin', TerminController::class);
+    // Master Data
+    // Pengguna
+    Route::resource('user', UserController::class);
+
+    // Route::middleware('superadmin0')->group(function () {
+    // hanya admin 0 (ojk) ------------
+
+    // DADHBOARD
+    // Data Visualisasi Statistik
+
+    // MASTER DATA CRUD
+    // Bank Penyalur KUR (DONE)
+    Route::resource('bank', BankController::class);
+
+    // Jenis Usaha (DONE)
+    Route::resource('business-type', BusinessTypeController::class);
+
+    // Izin Usaha (DONE)
+    Route::resource('business-permit', BusinessPermitController::class);
 
 
-                // MEMBER
-                // Data Member (DONE)
-                Route::resource('member', MemberController::class);
+    // Jenis KUR (DONE)
+    Route::resource('kur-type', KurTypeController::class);
+
+    // Termin (DONE)
+    Route::resource('termin', TerminController::class);
 
 
-                // CONTENT MANAJ SYSTEM
-                // Kategori Berita (DONE)
-                Route::resource('news-category',NewsCategoryController::class);
+    // MEMBER
+    // Data Member (DONE)
+    Route::resource('member', MemberController::class);
 
-                // Berita (ALL DONE, kecuali FITUR UPDATE, CREATE)
-                Route::resource('news', NewsController::class);
 
-                // Profil dan Syarat KUR (ALL DONE, kecuali FITUR UPDATE, CREATE)
-                Route::resource('requirement', RequirementController::class);
+    // CONTENT MANAJ SYSTEM
+    // Kategori Berita (DONE)
+    Route::resource('news-category', NewsCategoryController::class);
 
-                // FaQ (ALL DONE, kecuali FITUR UPDATE, CREATE)
-                Route::resource('faq',FaqController::class);
+    // Berita (ALL DONE, kecuali FITUR UPDATE, CREATE)
+    Route::resource('news', NewsController::class);
 
-                // Testimoni (ALL DONE, kecuali FITUR UPDATE, CREATE)
-                Route::resource('testimoni',TestimonialController::class);
+    // Profil dan Syarat KUR (ALL DONE, kecuali FITUR UPDATE, CREATE)
+    Route::resource('requirement', RequirementController::class);
 
-            });
+    // FaQ (ALL DONE, kecuali FITUR UPDATE, CREATE)
+    Route::resource('faq', FaqController::class);
 
-        // });
+    // Testimoni (ALL DONE, kecuali FITUR UPDATE, CREATE)
+    Route::resource('testimoni', TestimonialController::class);
 
-    // });
+});
+
+Route::get('/app', function () {
+    return view('backend.pages.statistic.index');
+});
+
 // });
 
-
-
-
-
-
-
+// });
+// });

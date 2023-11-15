@@ -52,7 +52,8 @@ Statistik Daftar Pengajuan KUR
         width: 100%;
         height:400px !important;
 
-}
+    }
+    
 
 
   </style>
@@ -130,6 +131,9 @@ Statistik Daftar Pengajuan KUR
             <div class="panel-heading">
                 Data Pengajuan
             </div>
+            <div style="padding: 20px">
+                <canvas id="termoChart"></canvas>
+            </div>
         </div>
     </div>
 </div>
@@ -151,14 +155,47 @@ Statistik Daftar Pengajuan KUR
             <div class="panel-heading">
                 Data Pengajuan Peminjaman dalam 7 Hari Terakhir 
             </div>
-            <div style="padding: 20px">
-                <canvas id="sumLineChart2"></canvas>
+            <div class="row" style=" padding: 20px">
+                <div class="col-md-3">
+                    Pembaruan Terakhir : <span style="color: #86909C"> 10 September 2023</span>
+                    <table style="margin: 20px">
+                        <tr>
+                            <td style="width: 50%;">
+                                <div  style="background-color: rgba(60, 126, 255, 1); padding: 20px">
+                                </div>
+                            </td>
+                            <td style="padding: 7px">Diterima <br> <span style="font-weight: bold">432.87</span> </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <div  style="background-color: rgba(246, 190, 44, 1); padding: 20px">
+                                </div>
+                            </td>
+                            <td style="padding: 7px">Diajukan <br> <span style="font-weight: bold">432.87</span> </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <div  style="background-color: rgba(2, 228, 52, 1); padding: 20px">
+                                </div>
+                            </td>
+                            <td style="padding: 7px">Diproses <br> <span style="font-weight: bold">432.87</span> </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <div  style="background-color: rgba(245, 63, 63, 1); padding: 20px">
+                                </div>
+                            </td>
+                            <td style="padding: 7px">Ditolak <br> <span style="font-weight: bold">432.87</span> </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-9">
+                    <canvas id="sumLineChart2"></canvas>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-@include('backend.pages.testimoni.modals.form')
 
 @endsection
 
@@ -167,10 +204,11 @@ Statistik Daftar Pengajuan KUR
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-  const ctx = document.getElementById('sumLineChart');
+  const ctx = document.getElementById('sumLineChart').getContext('2d');
   const doughnat = document.getElementById('doughnatChart');
   const doughnat2 = document.getElementById('doughnatChart2');
   const ctx2 = document.getElementById('sumLineChart2');
+  const termo_chart = document.getElementById('termoChart')
 
   const MONTHS = [
   'January',
@@ -185,19 +223,116 @@ Statistik Daftar Pengajuan KUR
   'October',
   'November',
   'December'
-];
+    ];
+
+    const dummyDate = [
+        '3 September',
+        '4 September',
+        '5 September',
+        '6 September',
+        '7 September',
+        '8 September',
+        '9 September'
+    ]
+
+    const termo_data = {
+      labels: ['Data Pengajuan'],
+      datasets: [{
+        label: 'Diterima',
+        data: [445],
+        backgroundColor: [
+          'rgba(22, 93, 255, 1)',
+        ],
+        borderColor: [
+          'rgba(22, 93, 255, 1)'
+        ]
+      },{
+        label: 'Diproses',
+        data: [445],
+        backgroundColor: [
+          'rgba(2, 228, 52, 1)',
+        ],
+        borderColor: [
+          'rgba(2, 228, 52, 1)',
+        ]
+      },{
+        label: 'Diajukan',
+        data: [445],
+        backgroundColor: [
+          'rgba(247, 186, 30, 1)',
+
+        ],
+        borderColor: [
+          'rgba(247, 186, 30, 1)',
+        ]
+      },{
+        label: 'Diproses',
+        data: [445],
+        backgroundColor: [
+          'rgba(245, 63, 63, 1)',
+
+        ],
+        borderColor: [
+          'rgba(245, 63, 63, 1)',
+        ]
+      }]
+    };
+
+    new Chart(termo_chart, {
+    type: 'bar',
+    data: termo_data,
+    options: {
+        indexAxis: 'y',
+        aspectRatio : 7,
+        borderSkipped: false,
+        borderWidth: 1,
+        barPercentage: 0.1,
+        categoryPercentage: 1,
+        scales: {
+            x: {
+                stacked : true,
+                grid:{
+                    display : false,
+                    drawBorder : false, 
+                    drawTicks : false
+                },
+                ticks: {
+                    display: false
+                }
+            },
+        
+            y: {
+                beginAtZero: true,
+                stacked : true,
+                grid:{
+                    display : false,
+                    drawBorder : false, 
+                    drawTicks : false
+                },
+                ticks: {
+                    display: false
+                }
+            }
+        }
+      }
+    });
+
+    const gradientBg = ctx.createLinearGradient(0,0,0,300);
+    gradientBg.addColorStop(0,'rgba(22, 93, 255,0.2)')
+    gradientBg.addColorStop(1,'rgba(22, 93, 255,0.005)')
 
 
 
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: MONTHS,
+      labels: dummyDate,
       datasets: [{
         label: 'My First Dataset',
-        data: [6, 9, 8, 1, 6, 5, 8,10,3,4,5,1,12,3],
-        	fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        data: [1,4,5,4,3,2,3],
+        fill: true,
+        borderColor: 'rgba(22, 93, 255,0.0)',
+        backgroundColor: gradientBg,
         tension: 0.1
         }]
     },
@@ -206,21 +341,10 @@ Statistik Daftar Pengajuan KUR
         y: {
           beginAtZero: true
         }
-      }
+      },
+      aspectRatio : 3,
     }
   });
-
-  // legendMarginRight
-
-  const legendMarginRight ={
-    id: 'legendMarginRight',
-    afterInit(chart,args,options){
-        console.log(chart)
-
-
-    }
-  };
-
 
 
   new Chart(doughnat, {
@@ -249,13 +373,13 @@ Statistik Daftar Pengajuan KUR
                 position : 'right',
                 align: 'center',    
             }
-        }   
+        },
+        aspectRatio : 7,   
     },
-    plugins: [legendMarginRight]
 });   
 
 new Chart(doughnat2, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
       labels: [
     'BCA',
@@ -296,37 +420,74 @@ new Chart(doughnat2, {
                 position : 'right',
                 align: 'center',    
             }
-        }   
+        },
+        
     },
 });
 
 new Chart(ctx2, {
     type: 'bar',
     data: {
-      labels: MONTHS,
+      labels: [1,2,3,4,5,6,7],
       datasets: [{
-        label: 'My First Dataset',
+        label: 'Diterima',
         data: [65, 59, 80, 81, 56, 55, 40],
         backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 205, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)'
+        'rgba(60, 126, 255, 1)'
         ],
         borderColor: [
-        'rgb(255, 99, 132)',
-        'rgb(255, 159, 64)',
-        'rgb(255, 205, 86)',
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)'
+        'rgba(60, 126, 255, 1)'
+        ],
+        borderWidth: 1
+        },{
+        label: 'Diajukan',
+        data: [65, 59, 80, 81, 56, 55, 40],
+        backgroundColor: [
+        'rgba(246, 190, 44, 1)'
+        ],
+        borderColor: [
+        'rgba(246, 190, 44, 1)'
+        ],
+        borderWidth: 1
+        },{
+        label: 'Diproses',
+        data: [65, 59, 80, 81, 56, 55, 40],
+        backgroundColor: [
+        'rgba(2, 228, 52, 1)'
+        ],
+        borderColor: [
+        'rgba(2, 228, 52, 1)'
+        ],
+        borderWidth: 1
+        },{
+        label: 'Ditolak',
+        data: [65, 59, 80, 81, 56, 55, 40],
+        backgroundColor: [
+        'rgba(245, 63, 63, 1)'
+        ],
+        borderColor: [
+        'rgba(245, 63, 63, 1)'
         ],
         borderWidth: 1
         }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display : true, 
+            text : 'Jumlah Pengajuan Peminjaman'
+          }
+        },
+        x:{
+            title:{
+                display : true,
+                text : 'Tanggal'
+            }
+        }
+      },
+      
     }
 });
 </script>
