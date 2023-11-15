@@ -118,24 +118,26 @@
                             vnode.context.user.bank_id = $(this).val()
                         });
 
-                        // $('.chosen-search input').autocomplete({
-                        //     source : function(request,response) {
-                        //         fetch("{{route('api.umi.search')}}?" + $.param({search: request.term}))
-                        //             .then(function(response){
-                        //                 return response.json()
-                        //             })
-                        //             .then(function(data){
-                        //                 let result = data.data
-                        //                 $(el).empty()
-                        //                 $.each(result,function(a,b) {
-                        //                     $(el).append(`<option value="${b.id}">${b.code} | ${b.name}</option>`)
+                        // ini bikin ui fotonya jadi bagus
+                        $('.chosen-search input').autocomplete({
+                            source : function(request,response) {
+                                fetch("{{route('api.umi.search')}}?" + $.param({search: request.term}))
+                                    .then(function(response){
+                                        return response.json()
+                                    })
+                                    .then(function(data){
+                                        let result = data.data
+                                        $(el).empty()
+                                        $.each(result,function(a,b) {
+                                            $(el).append(`<option value="${b.id}">${b.code} | ${b.name}</option>`)
 
-                        //                 })
-                        //                 $(el).trigger("chosen:updated")
-                        //             })
+                                        })
+                                        $(el).trigger("chosen:updated")
+                                    })
 
-                        //     }
-                        // });
+                            }
+                        });
+                        // ------------------------
                     }
                 },
                 'chosen-select-umi-search' : {

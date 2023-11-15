@@ -14,7 +14,7 @@
                 Data Berhasil di Simpan
             </div>
         </div>
-    </div>    
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-md-6">
                                 <table>
-        
+
                                     <tr>
                                         <td width="120">Desa</td>
                                         <td width="15">:</td>
@@ -90,13 +90,13 @@
                                         <td width="15">:</td>
                                         <th>{{$data->address}}</th>
                                     </tr>
-                                            
+
                                     <tr>
                                         <td width="120">Nominal</td>
                                         <td width="15">:</td>
                                         <th>Rp {{$data->amount}}</th>
                                     </tr>
-        
+
                                     <tr>
                                         <td width="120">Bank Penyalur</td>
                                         <td width="15">:</td>
@@ -131,7 +131,7 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>   
+                        </div>
                 </div>
             </div>
         </div>
@@ -144,6 +144,6 @@
 
 @push('scripts')
 <script>
-  
+
 </script>
 @endpush

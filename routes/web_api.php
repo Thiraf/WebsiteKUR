@@ -55,8 +55,8 @@ Route::get('login', function () {
 
 
 // authorization
-Route::name('api.')->group(function () {
-// Route::middleware('auth')->name('api.')->group(function () {
+// Route::name('api.')->group(function () {
+Route::middleware('auth')->name('api.')->group(function () {
 
     Route::get('financial-instituion-umi/list/search',[FinancialInstitutionUmiController::class, 'search'])->name('umi.search');
 

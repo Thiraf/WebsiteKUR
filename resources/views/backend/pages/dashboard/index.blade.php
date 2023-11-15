@@ -64,9 +64,9 @@
                                 <div class="form-group">
                                     <label for="">Bank Penyalur</label>
                                     <select name="banks" class="form-control" v-model="filter.bank">
-                                        {{-- @foreach($banks as $item)
+                                        @foreach($banks as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

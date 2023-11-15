@@ -44,6 +44,11 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
 
 
+use App\Http\Controllers\Backend\StatistikController;
+Route::get('statistik', [StatistikController::class, 'index']);
+
+
+
 Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () {
 // Route::prefix('manage')->name('manage.')->group(function () {
     Route::resource('/', HomeController::class);

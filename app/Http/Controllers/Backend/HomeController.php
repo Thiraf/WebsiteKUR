@@ -22,11 +22,10 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-
-        // dd(auth()->user()->role_id);
-
         $now = date('Y-m-d');
         $pass = date('Y-m-d', strtotime('-1 year'));
+
+        // dd($now);
 
         if($request->type == 'datatable') {
             $data = CreditRequest::select(
@@ -57,7 +56,6 @@ class HomeController extends Controller
         if(auth()->user()->role_id == 2) {
             $data->whereNotNull('pic_contact')->where('pic_contact',auth()->user()->id);
         }
-
 
         if(auth()->user()->role_id == 1) {
             $data->where('bank_id',auth()->user()->bank_id)->whereBetween('credit_requests.created_at', [$pass, $now]);
@@ -116,7 +114,6 @@ class HomeController extends Controller
         }
         $data['banks'] = Bank::where('status', '1')->orderBy('name')->get();
         return view('backend.pages.dashboard.index', $data);
-        // return view('backend.pages.dashboard.index');
     }
 
 }
