@@ -74,7 +74,7 @@
                     <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                     </span>
 
-                    <span class="hidden-sm hidden-md">{{ auth()->user()->name }}</span> <b class="caret"></b>
+                    <span class="hidden-sm hidden-md">{{ auth()->user()->name}}</span> <b class="caret"></b>
                 </a>
                 <!-- dropdown -->
                 <ul class="dropdown-menu  w">

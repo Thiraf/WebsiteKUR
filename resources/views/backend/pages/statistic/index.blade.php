@@ -77,20 +77,20 @@ Statistik Daftar Pengajuan KUR
             </div>
             <div class="wrapper" style="display: inline-block; padding-top: 30px; vertical-align: bottom">
                 <div class="flex-container">
-                    <button type="button" class="btn btn-filter">1 hari</button>
-                    <button type="button" class="btn btn-filter">1 minggu</button>
-                    <button type="button" class="btn btn-filter ">1 bulan</button>
-                    <button type="button" class="btn btn-filter ">6 bulan</button>
-                    <button type="button" class="btn btn-filter ">1 tahun</button>
-                    <button type="button" class="btn btn-filter ">All time</button>
+                    <button type="button" class="btn btn-filter" onclick="filterBtn(1)">1 hari</button>
+                    <button type="button" class="btn btn-filter" onclick="filterBtn(2)">1 minggu</button>
+                    <button type="button" class="btn btn-filter " onclick="filterBtn(3)">1 bulan</button>
+                    <button type="button" class="btn btn-filter " onclick="filterBtn(4)">6 bulan</button>
+                    <button type="button" class="btn btn-filter " onclick="filterBtn(5)">1 tahun</button>
+                    <button type="button" class="btn btn-filter " onclick="filterBtn(6)">All time</button>
                 </div>
             </div>
             <div class="wrapper" style="display: inline-block; margin-left: 10px; vertical-align: top;">
                 <form>
                     <label for="fname">Periode:</label><br>
-                    <input class="input-filter" type="text" id="fname" name="fname">
+                    <input class="input-filter" type="date" id="fname" name="fname" style="padding: 7px">
                     <input type="text" id="fname" name="fname" placeholder="-" class="custom-input">
-                    <input class="input-filter " type="text" id="lname" name="lname">
+                    <input class="input-filter " type="date" id="lname" name="lname" style="padding: 7px">
                 </form>
             </div>
             <div class="action-button" style="display: inline-block; margin-left: 5px; vertical-align: bottom; padding: 15px; padding-left: 0 ">
@@ -233,7 +233,112 @@ Statistik Daftar Pengajuan KUR
         '7 September',
         '8 September',
         '9 September'
-    ]
+    ];
+
+    var oneDayKurData = [13, 20, 8];
+    var oneDayBankData = [];
+
+    var oneWeekKurData = [];
+    var oneWeekBankData = [];
+
+    var oneMonthKurData = [];
+    var oneMonthBankData = [];
+
+    var sixMonthKurData = [];
+    var sixMonthBankData = [];
+
+    var oneYearKurData = [];
+    var oneYearBankData = [];
+
+    var allTimeKurData = [];
+    var allTImeBankData = [];
+
+    const kurLabels =[
+    'Kur Kecil',
+    'Kur Mikro',
+    'Kur Super Mikro']
+
+
+
+    function addData(chart,label, newData) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(newData);
+        });
+        chart.update();
+    }
+
+    function removeDatasets(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+    }
+    
+
+
+    // Button Index = {1 : 1 hari, 2 : 1 minggu, 3 : 1 bulan, 4 : 6 bulan, 5: 1 tahun, 6: All Time}
+    function filterBtn(btnIndex) {
+
+        switch (btnIndex) {
+            case 1:
+            
+            kurLabels.forEach(labels => {
+                removeDatasets(kurChart)
+                
+            });
+            kurLabels.forEach((labels,index) => {
+                const newData = oneDayKurData[index];
+                addData(kurChart,labels,newData);
+            });
+            
+            
+            
+
+            
+            // doughnat2.data.datasets[0].data = oneDayBankData;
+            // doughnat2.update();
+            break;
+            case 2:
+            doughnat.data.datasets[0].data = oneWeekKurData;
+            doughnat.update();
+            
+            doughnat2.data.datasets[0].data = oneWeekKurData;
+            doughnat2.update();
+            break;
+            case 3:
+            doughnat.data.datasets[0].data = oneMonthKurData;
+            doughnat.update();
+            
+            doughnat2.data.datasets[0].data = oneMonthBankData;
+            doughnat2.update();
+            break;
+            case 4:
+            doughnat.data.datasets[0].data = sixMonthKurData;
+            doughnat.update();
+            
+            doughnat2.data.datasets[0].data = sixMonthBankData;
+            doughnat2.update();
+            break;
+            case 5:
+            doughnat.data.datasets[0].data = oneYearKurData;
+            doughnat.update();
+            
+            doughnat2.data.datasets[0].data = oneYearBankData;
+            doughnat2.update();
+            break;
+            case 6:
+            doughnat.data.datasets[0].data = allTimeKurData;
+            doughnat.update();
+            
+            doughnat2.data.datasets[0].data = allTImeBankData;
+            doughnat2.update();
+            break;
+        }
+
+        
+    }
 
     const termo_data = {
       labels: ['Data Pengajuan'],
@@ -346,15 +451,12 @@ Statistik Daftar Pengajuan KUR
     }
   });
 
-
-  new Chart(doughnat, {
-    type: 'doughnut',
-    data: {
-      labels: [
+  const dataKur = {
+    labels: [
     'Kur Kecil',
     'Kur Mikro',
     'Kur Super Mikro'],
-      datasets: [{
+    datasets: [{
         label: 'My First Dataset',
         data: [300, 50, 100],
         backgroundColor: [
@@ -364,7 +466,12 @@ Statistik Daftar Pengajuan KUR
         ],
         hoverOffset: 4
         }]
-    },  
+    }
+
+
+  const kurChart = new Chart(doughnat, {
+    type: 'doughnut',
+    data: dataKur,  
     options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -490,6 +597,7 @@ new Chart(ctx2, {
       
     }
 });
+;
 </script>
  
 
