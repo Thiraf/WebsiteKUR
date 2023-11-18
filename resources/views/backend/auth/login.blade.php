@@ -94,42 +94,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
 
 
-<!-- Vue.js app container -->
-<div id="app">
-    <!-- Komponen-komponen Vue Anda -->
-  </div>
 
-  <!-- Tambahkan script Vue.js -->
-  {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.16"></script> --}}
-  {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script> --}}
 
-  <!-- Tambahkan script Axios (contoh menggunakan CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/axios@0.22.0/dist/axios.min.js"></script>
 
-  <script>
-  new Vue({
-    el: '#app',
-    data: {
-      // Data-data komponen Vue Anda
-    },
-    methods: {
-      // Metode-metode untuk mengelola permintaan HTTP
-      loginUser() {
-        // Buat permintaan HTTP untuk login ke Laravel Sanctum di sini
-        axios.post('/api/login', {
-          email: 'email@example.com',
-          password: 'password'
-        })
-        .then(response => {
-          // Handle responsenya di sini
-        })
-        .catch(error => {
-          // Handle kesalahan di sini
-        });
-      }
-    }
-  });
-  </script>
 
 
 </body>

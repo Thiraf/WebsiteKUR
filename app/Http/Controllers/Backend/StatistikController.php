@@ -12,7 +12,7 @@ class StatistikController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.check_statistik.check_stat');
+        return view('backend.pages.statistic.index');
         //
     }
 

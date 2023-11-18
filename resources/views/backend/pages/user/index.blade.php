@@ -118,26 +118,24 @@
                             vnode.context.user.bank_id = $(this).val()
                         });
 
-                        // ini bikin ui fotonya jadi bagus
-                        $('.chosen-search input').autocomplete({
-                            source : function(request,response) {
-                                fetch("{{route('api.umi.search')}}?" + $.param({search: request.term}))
-                                    .then(function(response){
-                                        return response.json()
-                                    })
-                                    .then(function(data){
-                                        let result = data.data
-                                        $(el).empty()
-                                        $.each(result,function(a,b) {
-                                            $(el).append(`<option value="${b.id}">${b.code} | ${b.name}</option>`)
+                        // $('.chosen-search input').autocomplete({
+                        //     source : function(request,response) {
+                        //         fetch("{{route('api.umi.search')}}?" + $.param({search: request.term}))
+                        //             .then(function(response){
+                        //                 return response.json()
+                        //             })
+                        //             .then(function(data){
+                        //                 let result = data.data
+                        //                 $(el).empty()
+                        //                 $.each(result,function(a,b) {
+                        //                     $(el).append(`<option value="${b.id}">${b.code} | ${b.name}</option>`)
 
-                                        })
-                                        $(el).trigger("chosen:updated")
-                                    })
+                        //                 })
+                        //                 $(el).trigger("chosen:updated")
+                        //             })
 
-                            }
-                        });
-                        // ------------------------
+                        //     }
+                        // });
                     }
                 },
                 'chosen-select-umi-search' : {
@@ -223,13 +221,6 @@
             },
             mounted() {
                 this.dataTable = $("#datatable").DataTable({
-
-
-
-
-
-                    // ajax: "{{ route('api.user.index') }}",
-
                     ajax: "{{ route('api.user.index') }}",
 
 
@@ -314,7 +305,7 @@
                     this.dropify = this.dropify.data('dropify');
                     this.dropify.resetPreview();
                     this.dropify.clearElement();
-                    axios.get('{{url("/")}}/manage.user-api/'+id)
+                    axios.get('{{url("/")}}/api/user/'+id)
                         .then(function (response) {
                             // handle success
                             if(!response.error) {
@@ -424,7 +415,7 @@
                         formData.append("district_id", self.user.district_id);
                         formData.append("postal_code", self.form.postal_code);
                         formData.append("_method", "PUT");
-                        axios.post('{{url("/")}}/manage.user-api/user/'+self.idEdit, formData, {
+                        axios.post('{{url("/")}}/api/user/'+self.idEdit, formData, {
                             headers: {
                                 'Content-Type': 'multipart/form-data',
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

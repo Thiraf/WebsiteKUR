@@ -53,11 +53,11 @@ Statistik Daftar Pengajuan KUR
         height:400px !important;
 
     }
-    
+
 
 
   </style>
-    
+
 @endpush
 
 @section('content')
@@ -141,7 +141,7 @@ Statistik Daftar Pengajuan KUR
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Jumlah Pengajuan Peminjaman dalam 7 Hari Terakhir 
+                Jumlah Pengajuan Peminjaman dalam 7 Hari Terakhir
             </div>
             <div style="padding: 20px">
                 <canvas id="sumLineChart"></canvas>
@@ -153,7 +153,7 @@ Statistik Daftar Pengajuan KUR
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Data Pengajuan Peminjaman dalam 7 Hari Terakhir 
+                Data Pengajuan Peminjaman dalam 7 Hari Terakhir
             </div>
             <div class="row" style=" padding: 20px">
                 <div class="col-md-3">
@@ -275,7 +275,7 @@ Statistik Daftar Pengajuan KUR
     });
     chart.update();
     }
-    
+
 
 
     // Button Index = {1 : 1 hari, 2 : 1 minggu, 3 : 1 bulan, 4 : 6 bulan, 5: 1 tahun, 6: All Time}
@@ -283,67 +283,67 @@ Statistik Daftar Pengajuan KUR
 
         switch (btnIndex) {
             case 1:
-            
+
             kurLabels.forEach(labels => {
                 removeDatasets(kurChart)
-                
+
             });
             kurLabels.forEach((labels,index) => {
                 const newData = oneDayKurData[index];
                 addData(kurChart,labels,newData);
             });
-            
-            
-            
 
-            
+
+
+
+
             // doughnat2.data.datasets[0].data = oneDayBankData;
             // doughnat2.update();
             break;
             case 2:
             doughnat.data.datasets[0].data = oneWeekKurData;
             doughnat.update();
-            
+
             doughnat2.data.datasets[0].data = oneWeekKurData;
             doughnat2.update();
             break;
             case 3:
             doughnat.data.datasets[0].data = oneMonthKurData;
             doughnat.update();
-            
+
             doughnat2.data.datasets[0].data = oneMonthBankData;
             doughnat2.update();
             break;
             case 4:
             doughnat.data.datasets[0].data = sixMonthKurData;
             doughnat.update();
-            
+
             doughnat2.data.datasets[0].data = sixMonthBankData;
             doughnat2.update();
             break;
             case 5:
             doughnat.data.datasets[0].data = oneYearKurData;
             doughnat.update();
-            
+
             doughnat2.data.datasets[0].data = oneYearBankData;
             doughnat2.update();
             break;
             case 6:
             doughnat.data.datasets[0].data = allTimeKurData;
             doughnat.update();
-            
+
             doughnat2.data.datasets[0].data = allTImeBankData;
             doughnat2.update();
             break;
         }
 
-        
+
     }
 
     const termo_data = {
       labels: ['Data Pengajuan'],
       datasets: [{
-        label: 'Diterima',
+        label: 'Diterima : 445',
         data: [445],
         backgroundColor: [
           'rgba(22, 93, 255, 1)',
@@ -398,20 +398,20 @@ Statistik Daftar Pengajuan KUR
                 stacked : true,
                 grid:{
                     display : false,
-                    drawBorder : false, 
+                    drawBorder : false,
                     drawTicks : false
                 },
                 ticks: {
                     display: false
                 }
             },
-        
+
             y: {
                 beginAtZero: true,
                 stacked : true,
                 grid:{
                     display : false,
-                    drawBorder : false, 
+                    drawBorder : false,
                     drawTicks : false
                 },
                 ticks: {
@@ -471,19 +471,19 @@ Statistik Daftar Pengajuan KUR
 
   const kurChart = new Chart(doughnat, {
     type: 'doughnut',
-    data: dataKur,  
+    data: dataKur,
     options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
                 position : 'right',
-                align: 'center',    
+                align: 'center',
             }
         },
-        aspectRatio : 7,   
+        aspectRatio : 7,
     },
-});   
+});
 
 new Chart(doughnat2, {
     type: 'pie',
@@ -516,8 +516,8 @@ new Chart(doughnat2, {
         'rgba(255, 106, 22, 1)',
         'rgba(240, 80, 80, 1)',
         ],
-        hoverOffset: 4 
-        }]  
+        hoverOffset: 4
+        }]
     },
     options: {
         responsive: true,
@@ -525,10 +525,10 @@ new Chart(doughnat2, {
         plugins: {
             legend: {
                 position : 'right',
-                align: 'center',    
+                align: 'center',
             }
         },
-        
+
     },
 });
 
@@ -583,7 +583,7 @@ new Chart(ctx2, {
         y: {
           beginAtZero: true,
           title: {
-            display : true, 
+            display : true,
             text : 'Jumlah Pengajuan Peminjaman'
           }
         },
@@ -594,11 +594,11 @@ new Chart(ctx2, {
             }
         }
       },
-      
+
     }
 });
 ;
 </script>
- 
+
 
 @endpush

@@ -36,17 +36,20 @@ require_once 'web_storage.php';
 
 // route login register (bisa dipake)
 // note : pas register ada kolom role, tapi, rolenya masi error, jadi masuk ke db default 0
-Route::get('login', [LoginController::class, 'login'])->name('login');
+
+// regis
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
+// login
+Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
-Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+// logout
+Route::post('actionlogout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 
 
 use App\Http\Controllers\Backend\StatistikController;
 
-Route::get('statistik', [StatistikController::class, 'index']);
 
 
 
@@ -54,7 +57,7 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
     // Route::prefix('manage')->name('manage.')->group(function () {
     Route::resource('/', HomeController::class);
 
-    // Route::middleware('admin0123')->group(function () {
+    Route::middleware('admin0123')->group(function () {
     // semua admin -------------
 
     // Dashboard
@@ -91,14 +94,14 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
 
 
-    // Route::middleware('admin01')->group(function () {
+    Route::middleware('admin01')->group(function () {
     // hanya admin 0 1 (ojk dan bank) ------------
 
     // Master Data
     // Pengguna
     Route::resource('user', UserController::class);
 
-    // Route::middleware('superadmin0')->group(function () {
+    Route::middleware('superadmin0')->group(function () {
     // hanya admin 0 (ojk) ------------
 
     // DADHBOARD
@@ -143,13 +146,18 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
     // Testimoni (ALL DONE, kecuali FITUR UPDATE, CREATE)
     Route::resource('testimoni', TestimonialController::class);
 
+    Route::resource('statistik', StatistikController::class);
+
 });
 
-Route::get('/app', function () {
-    return view('backend.pages.statistic.index');
+// ----
+
 });
 
-// });
+});
+});
 
-// });
+
+// Route::get('/app', function () {
+//     return view('backend.pages.statistic.index');
 // });

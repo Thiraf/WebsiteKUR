@@ -20,29 +20,32 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect('/manage');
         }else{
-            return view('login');
+            return view('backend.auth.login');
         }
     }
 
     public function actionlogin(Request $request)
     {
-        $data = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
 
-        if (Auth::Attempt($data)) {
+
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
             return redirect('manage');
-            // return view('backend.pages.termin.index');
-        }else{
+        } else {
             Session::flash('error', 'Email atau Password Salah');
             return redirect('/login');
         }
     }
 
-    public function actionlogout()
+    public function logout(Request $request)
     {
+
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/login');
     }
 }

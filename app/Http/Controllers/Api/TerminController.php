@@ -21,7 +21,7 @@ class TerminController extends Controller
         //
 
         $data = Termin::orderBy('value')->get();
-        
+
 
         return datatables()->of($data)
                 ->addColumn('action',function($data){
@@ -29,7 +29,9 @@ class TerminController extends Controller
                     $delete = " <a href='#' @click='deleteTermin($data->id)' data-id='$data->id' data-url='" . route('api.termin.destroy',[$data->id]) . "' class='delete-item btn btn-addon text-center btn-sm btn-danger'><i class='fa fa-trash'></i> Hapus</a>";
 
                     return $edit.$delete;
+
                 })
+
                 ->editColumn('value',function($data){
                     return $data->value;
                 })
