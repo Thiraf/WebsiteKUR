@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\DB;
 // use App\Http\Controllers\Backend\Auth;
 use Illuminate\Support\Facades\Auth;
 
+use App\Exports\CreditRequestExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 
 
 
@@ -22,6 +26,31 @@ class CreditRequestController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function exportExcel(Request $request)
+     {
+
+        $res =  Excel::download(new CreditRequestExport(
+            $request->bank,
+            $request->start_date,
+            $request->end_date,
+        $request->status,
+        $request->regency
+        ), 'credit_request.xlsx');
+        ob_end_clean();
+
+        return $res;
+
+        //  return Excel::download(new CreditRequestExport(
+        //      $request->bank,
+        //      $request->start_date,
+        //      $request->end_date,
+        //  $request->status,
+        //  $request->regency
+        //  ), 'credit_requestYAAAA.xlsx');
+     }
+
+
     public function index()
     {
         //
@@ -428,16 +457,8 @@ class CreditRequestController extends Controller
                 return redirect('/manage');
     }
 
-    public function exportExcel(Request $request)
-    {
-        return Excel::download(new CreditRequestExport(
-            $request->bank,
-            $request->start_date,
-            $request->end_date,
-	    $request->status,
-	    $request->regency
-        ), 'credit_request.xlsx');
-    }
+
+
 
     public function delete($id){
         $data['data'] = CreditRequest::find($id);

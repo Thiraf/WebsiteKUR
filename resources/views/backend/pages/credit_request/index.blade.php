@@ -210,6 +210,7 @@
                 },
                 exportExcel(){
                     let exportURL = "{{route('manage.credit-request.export')}}?" + `registration_no=${this.filter.registration_no}&bank=${this.filter.bank}&start_date=${$('input[name=start_date]').val()}&end_date=${$('input[name=end_date]').val()}`
+
                     window.location = exportURL
                 },
                 filterDatatable(){
