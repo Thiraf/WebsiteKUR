@@ -40,14 +40,6 @@ class CreditRequestController extends Controller
         ob_end_clean();
 
         return $res;
-
-        //  return Excel::download(new CreditRequestExport(
-        //      $request->bank,
-        //      $request->start_date,
-        //      $request->end_date,
-        //  $request->status,
-        //  $request->regency
-        //  ), 'credit_requestYAAAA.xlsx');
      }
 
 

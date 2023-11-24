@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StatistikController;
 use App\Http\Controllers\Api\BusinessTypeController;
 use App\Http\Controllers\Api\FinancialInstitutionUmiController;
-
+use App\Models\CreditRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,25 +55,32 @@ Route::get('login', function () {
 
 
 // authorization
+
+
 // Route::name('api.')->group(function () {
 Route::middleware('auth')->name('api.')->group(function () {
 
     Route::get('financial-instituion-umi/list/search',[FinancialInstitutionUmiController::class, 'search'])->name('umi.search');
 
 
-    // Route::middleware('admin0123')->group(function () {
+    Route::middleware('admin0123')->group(function () {
         // semua admin -------------
 
         // Dashboard
         // Modul Data
 
+
         // KUR
+        // History Pengajuan
+        Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
         // Pengajuan KUR
         Route::resource('credit-request', CreditRequestController::class);
-        // Riwayat Pengajuan
-        Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
 
-        // Route::middleware('admin01')->group(function () {
+
+        // Riwayat Pengajuan
+
+
+        Route::middleware('admin01')->group(function () {
             // hanya admin 0 1 (ojk dan bank) ------------
 
             // Master Data
@@ -81,7 +88,7 @@ Route::middleware('auth')->name('api.')->group(function () {
             Route::resource('user',UserController::class);
 
 
-            // Route::middleware('superadmin0')->group(function () {
+            Route::middleware('superadmin0')->group(function () {
                 // hanya admin 0 (ojk) ------------
 
                 // DADHBOARD
@@ -123,11 +130,11 @@ Route::middleware('auth')->name('api.')->group(function () {
                 // Testimoni ()
                 Route::resource('testimoni',TestimonialController::class);
 
-            // });
+            });
 
-        // });
+        });
 
-    // });
+    });
 });
 
 

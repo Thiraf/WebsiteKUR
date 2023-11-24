@@ -105,10 +105,7 @@ class BusinessTypeController extends Controller
             return $this->errNotFoundMsg();
         }
 
-        // $data->delete($id);
-        // $data->delete();
-        BusinessType::where('id', $id)->forceDelete();
-
+        $data->delete($id);
         return $this->successResponseMsg("Data berhasil di hapus");
     }
 }

@@ -15,7 +15,6 @@ return new class extends Migration
             // $table->bigIncrements('id');
             $table->integerIncrements('id');
             $table->integer('province_id');
-            // $table->TinyInteger('province_id');
             $table->string('name');
         });
     }
