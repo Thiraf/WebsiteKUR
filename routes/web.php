@@ -97,7 +97,7 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
         Route::post('credit-request/{id}/process', [CreditRequestController::class, 'processStore'])->name('credit-request.process-store');
 
 
-        // belum tau buat apa
+        // dcs delete route
         Route::get('credit-request/{id}/delete', [CreditRequestController::class, 'destroy'])->name('credit-request.delete');
 
 
