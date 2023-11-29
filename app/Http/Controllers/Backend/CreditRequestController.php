@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Exports\CreditRequestExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\AcceptPengajuan;
+use App\Mail\ConfirmPengajuan;
+use App\Mail\PendingPengajuan;
+use App\Mail\RejectPengajuan;
+use App\Mail\RedirectPengajuan;
 
 
 
