@@ -19,6 +19,8 @@
         rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ asset('theme/datepicker/css/bootstrap-datepicker.min.css') }}">
+    <script src="{{asset("theme/ckeditor5/ckeditor.js")}}"> </script>
+
 
     <!-- Font & CSS -->
     <link rel="stylesheet" href="{{ asset('css/font.css') }}" type="text/css" />
@@ -29,7 +31,7 @@
     }
     </style>
     @stack('styles')
-
+    
 </head>
 
 <body id="app">
@@ -97,6 +99,27 @@
     <script src="{{ asset('theme/datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
     <script>
+    // ClassicEditor
+    //     .create( document.querySelector( '#editor' ) )
+    //     .catch( error => {
+    //         console.error( error );
+    //     } );
+
+        $editor = ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    }   ) 
+        .catch( error => {
+            console.error( error );
+        } );
+
     $(document).on('keydown', '.number-input', function(e) {
         var ctrlDown = e.ctrlKey || e.metaKey;
 

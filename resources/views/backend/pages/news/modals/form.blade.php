@@ -47,7 +47,7 @@
                             <div class="">
                                 <div class="btn-toolbar m-b-sm btn-editor" data-role="editor-toolbar" data-target="#editor">
 
-                                <div class="btn-group dropdown" dropdown>
+                                {{-- <div class="btn-group dropdown" dropdown>
                                     <a class="btn btn-default" dropdown-toggle data-toggle="dropdown" tooltip="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                     <li><a href="#" data-edit="fontSize 5" style="font-size:24px">Huge</a></li>
@@ -93,11 +93,10 @@
                                 <div class="btn-group"  style="margin-bottom : 10px">
                                     <a class="btn btn-default" data-edit="undo" tooltip="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
                                     <a class="btn btn-default" data-edit="redo" tooltip="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                                </div> --}}
+                                
                                 </div>
-                                </div>
-                                <div ui-jq="wysiwyg" class="form-control" style="overflow:scroll;height:200px;max-height:200px" id="inputJawaban">
-
-                                </div>
+                                <div id="editor"></div>
                             </div>
                         </div>
                     </div>
@@ -129,13 +128,6 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    // $('#news-category').select2({
-    //     placeholder: "Pilih Kategori Berita...",
-    // });
-</script>
-@endpush
 
 
 
