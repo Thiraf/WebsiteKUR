@@ -1,0 +1,744 @@
+body {
+    font-family: 'Open Sans', sans-serif !important;
+    /* margin-top: 150px; */
+}
+
+div.divider-top {
+    margin-top: 150px;
+}
+
+/* div.divider-top-home {
+    margin-top: 70px;
+} */
+.background-section-jogja {
+    position: relative;
+    /* justify-content: flex-end; */
+    /* flex-direction: column; */
+    /* position: absolute; */
+    top: 0;
+    /* right: 9px; */
+    bottom: 0;
+    height: 100vh !important;
+    background-repeat: no-repeat;
+    /* left: 9px; */
+    /* padding: 15px; */
+    background-size: cover;
+    background-image: url(../img/home-header.jpg);
+}
+
+.section-header {
+    z-index: 1;
+    position: relative;
+    /* margin: 80px; */
+}
+
+.btn-middle-pengajuan {
+    padding: 20px;
+}
+
+.section-kur span {
+    color: #263b5e !important;
+}
+
+.bg-primary {
+    border: none !important;
+    background-color: #ffffff !important;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+}
+
+.background-section-jogja:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, transparent 0%, black 100%);
+}
+
+.navbar-expand-lg {
+    z-index: 1;
+    /* border-bottom: 0.2px solid #f3f3f31e !important; */
+}
+
+.btn-primary {
+    border: none;
+    background-color: #263b5e !important;
+}
+
+.btn-section-header {
+    margin: 10px;
+    width: 120px;
+    padding: 15px;
+}
+
+.btn-section-process-kur {
+    padding: 15px;
+}
+
+a.btn-other-profile-kur {
+    font-size: 13px;
+    color: #263b5e;
+    text-decoration: none;
+}
+
+.section-header h1 {
+    font-weight: 800 !important;
+}
+
+.ft-10 {
+    font-size: 10px;
+}
+
+.ft-13 {
+    font-size: 13px;
+}
+
+.ft-15 {
+    font-size: 15px;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.fitur-logo {
+    width: 80px !important;
+    font-size: 60px !important;
+    color: #000000 !important;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+    position: relative;
+    top: -60px;
+    border-radius: 0.3rem !important;
+    background-color: #fff !important;
+}
+
+.news-section-header p span {
+    color: #ffffff !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.page-news-section-header p span {
+    color: #263b5e !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.card-profile-kur {
+    /* padding: 0px 10px; */
+    color: #263b5e !important;
+    border-radius: 7px;
+    border-top: 4px solid #ff194bd3 !important;
+    min-height: 500px;
+}
+
+.card-img-top {
+    width: 100%;
+}
+
+hr.other-hr {
+    width: 50px;
+    border-top: 2px solid #ff194bd3;
+}
+
+.bg-process-kur {
+    margin-top: -100px;
+    color: #273167 !important;
+    background-color: #e9ebef !important;
+}
+
+.section-process-kur {
+    padding-top: 200px;
+    padding-bottom: 100px !important;
+}
+
+.section-website-kur {
+    color: #273167 !important;
+    margin-top: 90px !important;
+}
+
+.bg-dark {
+    background-color: #000 !important;
+}
+
+.card-testimony {
+    /* width: 800px; */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    border-top: 4px solid #ff194bd3 !important;
+}
+
+.card-testimony img {
+    object-fit: cover;
+    object-position: center center;
+    width: 150px;
+    height: 150px;
+}
+
+.card-testimony p span {
+    color: #263b5e !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.rounded-circle-testimony {
+    /* border-radius: 100px !important; */
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.card-testimoni-header-sm {
+    border-top: 4px solid #ff194bd3 !important;
+    border-radius: 7px;
+}
+
+.card-sm-testimoni {
+    min-height: 350px !important;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    /* display: block; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.number-process-kur {
+    border-radius: 50%;
+    font-size: 15px;
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+    background: #ed1c24;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+}
+
+.section-faq {
+    color: #263b5e !important;
+    padding: 20px;
+}
+
+.title-faq {
+    color: #263b5e !important;
+}
+
+.number-faq-kur {
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+    background: #263b5e;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    text-decoration: none !important;
+}
+
+.card-middle-pengajuan {
+    position: relative;
+    border: none;
+    border-radius: 10px !important;
+    background-image: url(../img/cta-bg.webp);
+    background-size: cover;
+    padding: 20px;
+    width: 700px;
+}
+
+.body-middle {
+    z-index: 1;
+    color: #ffffff;
+}
+
+.card-middle-pengajuan:after {
+    border-radius: 10px;
+    border: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #273167ec;
+}
+
+.bg-section-news img {
+    width: 500px;
+    height: 350px;
+}
+
+.bg-section-news {
+    background-color: #100f1f;
+    margin-top: -100px;
+}
+
+.section-news {
+    padding-top: 150px;
+    padding-bottom: 100px !important;
+}
+
+.title-news {
+    color: #ff194bd3;
+    font-weight: 600 !important;
+}
+
+a.btn-news-other {
+    font-size: 13px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.section-news-page img {
+    max-width: 100%;
+    height: auto;
+    /* width: 500px;
+    height: 350px; */
+}
+
+.section-penyalur-kur {
+    color: #273167 !important;
+    padding: 50px;
+}
+
+.footer {
+    margin-top: 80px;
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+/* PAGE TESTIMONY */
+.section-page-testimony {
+    color: #273167 !important;
+}
+
+.section-profile-page {
+    /* padding: 100px; */
+    /* padding-top: 20px; */
+    color: #273167 !important;
+    /* margin-right: 50px; */
+}
+
+.text-primary {
+    color: #273167 !important;
+}
+
+.card-profile-page {
+    /* width: 100px; */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    border-top: 4px solid #ff194bd3 !important;
+}
+
+.card-profile-page p span {
+    color: #263b5e !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+/* NEWS */
+
+a.btn-news-other-page {
+    font-size: 13px;
+    color: #273167;
+    text-decoration: none;
+}
+
+.text-primary-bold {
+    font-weight: 600;
+    color: #273167;
+}
+
+hr.page-news-hr {
+    width: 50px;
+    text-align: left;
+    margin-left: 0;
+    border: 1px solid #ff194bd3;
+}
+
+.section-detail-news-page {
+    color: #273167 !important;
+    /* margin-left: 90px; */
+}
+
+.detail-news {
+    text-align: justify;
+}
+
+.section-detail-news-page .detail-news p {
+    color: #263b5e !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.card-category-news {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    border-top: 4px solid #ff194bd3 !important;
+}
+
+.category-side-news {
+    font-size: 13px;
+    border-bottom: 1px solid #ff194bd3 !important;
+}
+
+.section-bank-center {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* responsive */
+@media only screen and (max-width: 600px) {
+    .card-middle-pengajuan {
+        width: 500px;
+        height: 150px;
+    }
+
+    .card-middle-pengajuan:after {
+        width: 500px;
+        height: 150px;
+    }
+
+    .card-middle-pengajuan h3 {
+        font-size: 15px;
+        margin-top: 10px !important;
+    }
+
+    .card-middle-pengajuan .btn-danger {
+        /* padding: 5px; */
+        font-size: 10px !important;
+    }
+
+    .section-bank-center img {
+        margin-right: -15px;
+        margin-left: -20px;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        border-style: none;
+        width: 100px;
+        padding: 16px;
+    }
+
+    .bg-section-news img {
+        width: 500px;
+        height: 350px;
+    }
+
+    .card-testimony {
+        /* width: 500px; */
+    }
+
+    /* .section-website-kur img{
+        width: 330px;
+        height: 400px;
+    } */
+}
+
+@media only screen and (max-width: 500px) {
+    .card-middle-pengajuan {
+        width: 470px;
+        height: 150px;
+    }
+
+    .card-middle-pengajuan:after {
+        width: 470px;
+        height: 150px;
+    }
+
+    .card-middle-pengajuan h3 {
+        font-size: 15px;
+        margin-top: 10px !important;
+    }
+
+    .card-middle-pengajuan .btn-danger {
+        /* padding: 5px; */
+        font-size: 10px !important;
+    }
+
+    .section-bank-center img {
+        margin-right: -15px;
+        margin-left: -20px;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        border-style: none;
+        width: 100px;
+        padding: 16px;
+    }
+
+    .bg-section-news img {
+        width: 450px;
+        height: 300px;
+    }
+
+    /* .section-website-kur img{
+        width: 330px;
+        height: 400px;
+    } */
+}
+
+@media only screen and (max-width: 420px) {
+
+    /* .section-website-kur img{
+        width: 300px !important;
+        height: 500px !important;
+    } */
+    .bg-section-news img {
+        width: 350px !important;
+        height: 200px !important;
+    }
+
+    .card-middle-pengajuan {
+        width: 370px;
+        height: 150px;
+    }
+
+    .card-middle-pengajuan:after {
+        width: 370px;
+        height: 150px;
+    }
+
+    .card-middle-pengajuan h3 {
+        font-size: 15px;
+    }
+
+    .card-middle-pengajuan .btn-danger {
+        padding: 10px;
+        font-size: 9px !important;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .card-middle-pengajuan {
+        width: 390px;
+        height: 120px;
+    }
+
+    .card-middle-pengajuan .d-flex {
+        margin-top: -10px !important;
+    }
+
+    .card-middle-pengajuan:after {
+        width: 390px;
+        height: 120px;
+    }
+
+    .card-middle-pengajuan h3 {
+        font-size: 12px;
+    }
+
+    .card-middle-pengajuan .btn-middle-pengajuan {
+        padding: 5px;
+        font-size: 10px !important;
+    }
+
+    .bg-section-news img {
+        width: 350px !important;
+        height: 200px !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .image-section-web-kur {
+        width: 300px !important;
+        height: 500px !important;
+    }
+
+    .card-testimony {
+        /* width: 320px; */
+    }
+
+    .btn-section-header {
+        padding: 5px;
+        padding-bottom: 10px;
+    }
+
+    .btn-section-header span {
+        font-size: 12px !important;
+    }
+
+    .card-middle-pengajuan {
+        width: 330px;
+        height: 120px;
+    }
+
+    .card-middle-pengajuan .d-flex {
+        margin-top: -20px !important;
+    }
+
+    .card-middle-pengajuan:after {
+        width: 330px;
+        height: 120px;
+    }
+
+    .card-middle-pengajuan h3 {
+        font-size: 12px;
+    }
+
+    .card-middle-pengajuan .btn-middle-pengajuan {
+        padding: 5px;
+        font-size: 10px !important;
+    }
+
+    .section-header h1 {
+        font-size: 50px !important;
+        /* margin-left: -35px; */
+    }
+
+    .section-header h4 {
+        font-size: 13px !important;
+    }
+
+    .section-header .btn-section-header {
+        /* margin-left: -10px; */
+    }
+
+    .section-header img {
+        width: 150px;
+        margin-left: -10px;
+    }
+
+    .section-kur span {
+        font-size: 13px;
+    }
+
+    .card-profile-kur h4 {
+        font-size: 20px;
+    }
+
+    .card-profile-kur p {
+        font-size: 13px;
+    }
+
+    .section-process-kur img {
+        padding-bottom: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .section-process-kur p {
+        font-size: 13px;
+    }
+
+    .section-process-kur h3 {
+        font-size: 20px;
+    }
+
+    .section-process-kur span {
+        font-size: 13px;
+    }
+
+    .btn-section-process-kur {
+        padding: 10px;
+        /* margin-left: 5px !important; */
+        font-size: 12px !important;
+    }
+
+    .number-process-kur {
+        border-radius: 50%;
+        font-size: 13px;
+        width: 42px;
+        height: 34px;
+        padding: 8px;
+        background: #ed1c24;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .section-website-kur h3 {
+        font-size: 20px;
+    }
+
+    .card-process-kur span {
+        font-size: 13px;
+    }
+
+    .section-faq h3 {
+        font-size: 20px;
+    }
+
+    .section-faq p {
+        font-size: 13px;
+    }
+
+    .bg-section-news {
+        margin-top: -70px;
+    }
+
+    .section-news {
+        padding-top: 110px;
+    }
+
+    .btn-news-other {
+        margin-bottom: 40px !important;
+    }
+
+    .section-penyalur-kur h3 {
+        font-size: 20px;
+    }
+
+    .section-bank-center img {
+        margin-right: -15px;
+        margin-left: -20px;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        border-style: none;
+        width: 100px;
+        padding: 16px;
+    }
+
+    .bg-section-news img {
+        width: 300px !important;
+        height: 200px !important;
+    }
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    z-index: 999999;
+}
