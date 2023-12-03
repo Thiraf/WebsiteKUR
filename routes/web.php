@@ -72,11 +72,6 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
         Route::resource('credit-request', CreditRequestController::class);
 
 
-
-
-
-
-
         Route::get('credit-request/{id}/accept', [CreditRequestController::class, 'accept'])->name('credit-request.accept');
         Route::post('credit-request/{id}/accept', [CreditRequestController::class, 'acceptStore'])->name('credit-request.accept-store');
 
@@ -142,20 +137,19 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
 
                 // CONTENT MANAJ SYSTEM
-                // Kategori Berita (DONE)
+                // Kategori Berita
                 Route::resource('news-category', NewsCategoryController::class);
 
-                // Berita (ALL DONE, kecuali FITUR UPDATE, CREATE)
+                // Berita
                 Route::resource('news', NewsController::class);
 
-                // Profil dan Syarat KUR (ALL DONE, kecuali FITUR UPDATE, CREATE)
+                // Profil dan Syarat KUR
                 Route::resource('requirement', RequirementController::class);
 
-                // FaQ (ALL DONE, kecuali FITUR UPDATE, CREATE)
-                // (DONE ALL)
+                // FaQ
                 Route::resource('faq', FaqController::class);
 
-                // Testimoni (ALL DONE, kecuali FITUR UPDATE, CREATE)
+                // Testimoni
                 Route::resource('testimoni', TestimonialController::class);
 
             });

@@ -8,34 +8,226 @@ use Carbon\Carbon;
 use App\Models\CreditRequest;
 use App\Models\KurType;
 use App\Models\Bank;
-use Illuminate\Support\Facades\DB;
 
 
 class StatistikController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function filterDate(Request $request){
+
+        $satu = $request->start_date;
+        $dua = $request->end_date;
+        $dua = Carbon::parse($dua)->addDays(1)->toDateString();
+
+        // dd($satu);
+        // dd($dua);
+
+        // note
+        // where between day 02-11 => yang diitung dari tanggal 02-10 aja
+        // biar hari enddate ikut kehitung, tambahkan addDays(1)
+
+        // ------------------------------------------------------
+        // tipe kur (bisa difilter rentang waktu) (1)
+        $kurTypes = KurType::withCount(['creditRequests' => function ($query) use ($satu, $dua) {
+            $query->whereBetween('created_at', [$satu, $dua])
+                ->where('status', 'DISETUJUI');
+        }])->get();
+
+        // ------------------------------------------------------
+        // jumlah bank (bisa difilter rentang waktu)(2)
+        $banks = Bank::withCount(['creditRequests' => function ($query) use ($satu, $dua) {
+            $query->whereBetween('created_at', [$satu, $dua])
+                ->where('status', 'DISETUJUI');
+        }])
+        ->orderBy('name', 'asc')
+        ->get();
+
+        // ------------------------------------------------------
+        // jumlah SEMUA STATUS PENGAJUAN (bisa diifilter) (3)
+        $count1a = CreditRequest::whereBetween('created_at', [$satu, $dua])
+        ->where('status', 'DIAJUKAN')
+        ->count();
+
+        // disetujui
+        $count2a = CreditRequest::whereBetween('created_at', [$satu, $dua])
+            ->where('status', 'DISETUJUI')
+            ->count();
+
+        // diproses
+        $count3a = CreditRequest::whereBetween('created_at', [$satu, $dua])
+            ->where('status', 'DIPROSES')
+            ->count();
+
+        // ditolak
+        $count4a = CreditRequest::whereBetween('created_at', [$satu, $dua])
+            ->where('status', 'DITOLAK')
+            ->count();
+
+        // dipending
+        $count5a = CreditRequest::whereBetween('created_at', [$satu, $dua])
+            ->where('status', 'DIPENDING')
+            ->count();
+
+        $jumlah_status = [];
+        $jumlah_status[] = [
+            'diajukan' => $count1a,
+            'disetujui' => $count2a,
+            'diproses' => $count3a,
+            'ditolak' => $count4a,
+            'dipending' => $count5a
+        ];
+
+        $data = [
+            'kurTypes' => $kurTypes->map(function ($kurType) {
+                return [
+                    'name' => $kurType->name,
+                    'credit_request_count' => $kurType->credit_requests_count,
+                ];
+            }),
+            'banks' => $banks->map(function ($bank) {
+                return [
+                    'name' => $bank->name,
+                    'credit_request_count' => $bank->credit_requests_count,
+                ];
+            }),
+            'data_pengajuan' => $jumlah_status,
+        ];
+
+        return response()->json($data);
+
+        }
+
+
+
+    public function filter($days){
+
+        if($days == -100){
+
+            $kurTypes = KurType::withCount(['creditRequests' => function ($query) {
+                $query->where('status', 'DISETUJUI');
+            }])->get();
+
+            $banks = Bank::withCount(['creditRequests' => function ($query) {
+                $query->where('status', 'DISETUJUI');
+            }])
+            ->orderBy('name', 'asc')
+            ->get();
+
+            $count1a = CreditRequest::where('status', 'DIAJUKAN')->count();
+            $count2a = CreditRequest::where('status', 'DISETUJUI')->count();
+            $count3a = CreditRequest::where('status', 'DIPROSES')->count();
+            $count4a = CreditRequest::where('status', 'DITOLAK')->count();
+            $count5a = CreditRequest::where('status', 'DIPENDING')->count();
+
+            $jumlah_status = [
+                'diajukan' => $count1a,
+                'disetujui' => $count2a,
+                'diproses' => $count3a,
+                'ditolak' => $count4a,
+                'dipending' => $count5a
+            ];
+
+        } else {
+            $DaysAgo = Carbon::now()->subDays($days)->toDateString();
+            // dd($DaysAgo);
+
+            // ------------------------------------------------------
+            // tipe kur (bisa difilter rentang waktu) (1)
+            $kurTypes = KurType::withCount(['creditRequests' => function ($query) use ($DaysAgo) {
+                $query->where('created_at', '>=', $DaysAgo);
+                $query->where('status', 'DISETUJUI');
+            }])->get();
+
+            // ------------------------------------------------------
+            // jumlah bank (bisa difilter rentang waktu)(2)
+            $banks = Bank::withCount(['creditRequests' => function ($query) use ($DaysAgo) {
+                $query->where('created_at', '>=', $DaysAgo);
+                $query->where('status', 'DISETUJUI');
+            }])
+            ->orderBy('name', 'asc')
+            ->get();
+
+            // ------------------------------------------------------
+            // jumlah SEMUA STATUS PENGAJUAN (bisa diifilter) (3)
+            $count1a = CreditRequest::where('created_at', '>=', $DaysAgo)
+            ->where('status', 'DIAJUKAN')
+            ->count();
+
+            // disetujui
+            $count2a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
+                ->where('status', 'DISETUJUI')
+                ->count();
+
+            // diproses
+            $count3a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
+                ->where('status', 'DIPROSES')
+                ->count();
+
+            // ditolak
+            $count4a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
+                ->where('status', 'DITOLAK')
+                ->count();
+
+            // dipending
+            $count5a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
+                ->where('status', 'DIPENDING')
+                ->count();
+
+            $jumlah_status = [];
+            $jumlah_status[] = [
+                'diajukan' => $count1a,
+                'disetujui' => $count2a,
+                'diproses' => $count3a,
+                'ditolak' => $count4a,
+                'dipending' => $count5a
+            ];
+        }
+
+
+        $data = [
+            'kurTypes' => $kurTypes->map(function ($kurType) {
+                return [
+                    'name' => $kurType->name,
+                    'credit_request_count' => $kurType->credit_requests_count,
+                ];
+            }),
+            'banks' => $banks->map(function ($bank) {
+                return [
+                    'name' => $bank->name,
+                    'credit_request_count' => $bank->credit_requests_count,
+                ];
+            }),
+
+            'data_pengajuan' => $jumlah_status,
+        ];
+
+        return response()->json($data);
+
+        }
+
+
+
     public function index()
     {
 
-    $DaysAgo = Carbon::now()->subDays(700);
-    $sevenDaysAgo = Carbon::now()->subDays(7);
+    // defaultnya "Hari Ini"
+    // $DaysAgo = Carbon::now()->subDays(0)->toDateString();
+    $DaysAgo = Carbon::now()->toDateString();
+    $sevenDaysAgo = Carbon::now()->subDays(6);
     $today = Carbon::now();
-    // $RentangDays = Carbon::now()->subDays(7);
 
 
-    // tipe kur status DIAJUKAN (bisa difilter rentang waktu) (1)
+    // tipe kur (bisa difilter rentang waktu) (1)
     $kurTypes = KurType::withCount(['creditRequests' => function ($query) use ($DaysAgo) {
         $query->where('created_at', '>=', $DaysAgo);
-        $query->where('status', 'DIAJUKAN');
+        $query->where('status', 'DISETUJUI');
     }])->get();
 
-
-    // jumlah bank status DIAJUKAN (bisa difilter rentang waktu)(2)
+    // jumlah bank (bisa difilter rentang waktu)(2)
     $banks = Bank::withCount(['creditRequests' => function ($query) use ($DaysAgo) {
         $query->where('created_at', '>=', $DaysAgo);
-        $query->where('status', 'DIAJUKAN');
+        $query->where('status', 'DISETUJUI');
+        // $query->whereIn('status', ['DIAJUKAN', 'DISETUJUI']);
     }])
     ->orderBy('name', 'asc')
     ->get();
@@ -45,11 +237,10 @@ class StatistikController extends Controller
     $count1a = CreditRequest::where('created_at', '>=', $DaysAgo)
     ->where('status', 'DIAJUKAN')
     ->count();
-    // dd($count1a);
 
-    // data diterima
+    // data disetujui
     $count2a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
-        ->where('status', 'DITERIMA')
+        ->where('status', 'DISETUJUI')
         ->count();
 
     // diproses
@@ -70,22 +261,14 @@ class StatistikController extends Controller
     // $jumlah_status = [];
     $jumlah_status[] = [
         'diajukan' => $count1a,
-        'diterima' => $count2a,
+        'disetujui' => $count2a,
         'diproses' => $count3a,
         'ditolak' => $count4a,
         'dipending' => $count5a
     ];
 
-    // $jumlah_status = [
-    //     'diajukan' => $count1a,
-    //     'diterima' => $count2a,
-    //     'diproses' => $count3a,
-    //     'ditolak' => $count4a,
-    //     'dipending' => $count5a
-    // ];
-
     // Jumlah Pengajuan Peminjaman dalam 7 Hari Terakhir (4)
-    //Data statud PENGAJUAN berdasarkan tanggal (5)
+    // Data status PENGAJUAN berdasarkan  dalam 7 Hari Terskhir (5)
     $dataStatus7 = [];
     $dataPengajuan7 = [];
     for ($date = $today; $date >= $sevenDaysAgo; $date->subDay()) {
@@ -180,91 +363,6 @@ class StatistikController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-
-    // public function filter(Request $request){
-    public function filter(Request $request){
-
-    $rentang = $request->input('rentang');
-
-    $DaysAgo = Carbon::now()->subDays($rentang);
-
-    // ------------------------------------------------------
-    // tipe kur status DIAJUKAN (bisa difilter rentang waktu) (1)
-    $kurTypes = KurType::withCount(['creditRequests' => function ($query) use ($DaysAgo) {
-        $query->where('created_at', '>=', $DaysAgo);
-        $query->where('status', 'DIAJUKAN');
-    }])->get();
-
-
-    // ------------------------------------------------------
-    // jumlah bank status DIAJUKAN (bisa difilter rentang waktu)(2)
-    $banks = Bank::withCount(['creditRequests' => function ($query) use ($DaysAgo) {
-        $query->where('created_at', '>=', $DaysAgo);
-        $query->where('status', 'DIAJUKAN');
-    }])
-    ->orderBy('name', 'asc')
-    ->get();
-
-    // ------------------------------------------------------
-    // jumlah SEMUA STATUS PENGAJUAN (bisa diifilter) (3)
-    $count1a = CreditRequest::where('created_at', '>=', $DaysAgo)
-    ->where('status', 'DIAJUKAN')
-    ->count();
-    // dd($count1a);
-
-    // data diterima
-    $count2a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
-        ->where('status', 'DITERIMA')
-        ->count();
-
-    // diproses
-    $count3a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
-        ->where('status', 'DIPROSES')
-        ->count();
-
-    // ditolak
-    $count4a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
-        ->where('status', 'DITOLAK')
-        ->count();
-
-    // dipending
-    $count5a = CreditRequest::whereDate('created_at','>=', $DaysAgo)
-        ->where('status', 'DIPENDING')
-        ->count();
-
-    $jumlah_status = [];
-    $jumlah_status[] = [
-        'diajukan' => $count1a,
-        'diterima' => $count2a,
-        'diproses' => $count3a,
-        'ditolak' => $count4a,
-        'dipending' => $count5a
-    ];
-
-
-    $data = [
-        'kurTypes' => $kurTypes->map(function ($kurType) {
-            return [
-                'name' => $kurType->name,
-                'credit_request_count' => $kurType->credit_requests_count,
-            ];
-        }),
-        'banks' => $banks->map(function ($bank) {
-            return [
-                'name' => $bank->name,
-                'credit_request_count' => $bank->credit_requests_count,
-            ];
-        }),
-
-        'data_status' => $jumlah_status,
-    ];
-
-    return response()->json($data);
-
-    }
-
-
-
 
     public function create()
     {

@@ -96,9 +96,9 @@ Route::name('api.')->group(function () {
                 // DADHBOARD
                 // Data Visualisasi Statistik
                 Route::get('statistik', [StatistikController::class, 'index']);
-                // Route::resource('statistik', StatistikController::class);
-                Route::get('statistik/filter', [StatistikController::class, 'filter'])->name('statistik.filter');
-                // Route::post('statistik/filter', [StatistikController::class, 'filter'])->name('statistik.filter');
+                // Filter Data Visualisasi Stat
+                Route::get('statistik/filter/{days}', [StatistikController::class, 'filter'])->name('statistik.filter');
+                Route::get('statistik/filter-date', [StatistikController::class, 'filterDate'])->name('statistik.filter-date');
 
 
                 // MASTER DATA CRUD
