@@ -20,15 +20,8 @@ class StatistikController extends Controller
         $dua = $request->end_date;
         $dua = Carbon::parse($dua)->addDays(1)->toDateString();
 
-        // dd($satu);
-        // dd($dua);
-
-        // note
-        // where between day 02-11 => yang diitung dari tanggal 02-10 aja
-        // biar hari enddate ikut kehitung, tambahkan addDays(1)
-
         // ------------------------------------------------------
-        // tipe kur (bisa difilter rentang waktu) (1)
+        // tipe kur
         $kurTypes = KurType::withCount([
             'creditRequests' => function ($query) use ($satu, $dua) {
                 $query->whereBetween('created_at', [$satu, $dua])
@@ -37,7 +30,7 @@ class StatistikController extends Controller
         ])->get();
 
         // ------------------------------------------------------
-        // jumlah bank (bisa difilter rentang waktu)(2)
+        // jumlah bank
         $banks = Bank::withCount([
             'creditRequests' => function ($query) use ($satu, $dua) {
                 $query->whereBetween('created_at', [$satu, $dua])
@@ -48,7 +41,7 @@ class StatistikController extends Controller
             ->get();
 
         // ------------------------------------------------------
-        // jumlah SEMUA STATUS PENGAJUAN (bisa diifilter) (3)
+        // jumlah SEMUA STATUS PENGAJUAN
         $count1a = CreditRequest::whereBetween('created_at', [$satu, $dua])
             ->where('status', 'DIAJUKAN')
             ->count();
@@ -73,7 +66,6 @@ class StatistikController extends Controller
             ->where('status', 'DIPENDING')
             ->count();
 
-        $jumlah_status = [];
         $jumlah_status[] = [
             'diajukan' => $count1a,
             'disetujui' => $count2a,
@@ -139,10 +131,9 @@ class StatistikController extends Controller
 
         } else {
             $DaysAgo = Carbon::now()->subDays($days)->toDateString();
-            // dd($DaysAgo);
 
             // ------------------------------------------------------
-            // tipe kur (bisa difilter rentang waktu) (1)
+            // tipe kur
             $kurTypes = KurType::withCount([
                 'creditRequests' => function ($query) use ($DaysAgo) {
                     $query->where('created_at', '>=', $DaysAgo);
@@ -151,7 +142,7 @@ class StatistikController extends Controller
             ])->get();
 
             // ------------------------------------------------------
-            // jumlah bank (bisa difilter rentang waktu)(2)
+            // jumlah bank
             $banks = Bank::withCount([
                 'creditRequests' => function ($query) use ($DaysAgo) {
                     $query->where('created_at', '>=', $DaysAgo);
@@ -162,7 +153,7 @@ class StatistikController extends Controller
                 ->get();
 
             // ------------------------------------------------------
-            // jumlah SEMUA STATUS PENGAJUAN (bisa diifilter) (3)
+            // jumlah SEMUA STATUS PENGAJUAN
             $count1a = CreditRequest::where('created_at', '>=', $DaysAgo)
                 ->where('status', 'DIAJUKAN')
                 ->count();
@@ -223,15 +214,11 @@ class StatistikController extends Controller
 
     public function index()
     {
-
-        // defaultnya "Hari Ini"
-        // $DaysAgo = Carbon::now()->subDays(0)->toDateString();
         $DaysAgo = Carbon::now()->toDateString();
         $sevenDaysAgo = Carbon::now()->subDays(6);
         $today = Carbon::now();
 
-
-        // tipe kur (bisa difilter rentang waktu) (1)
+        // tipe kur
         $kurTypes = KurType::withCount([
             'creditRequests' => function ($query) use ($DaysAgo) {
                 $query->where('created_at', '>=', $DaysAgo);
@@ -239,19 +226,18 @@ class StatistikController extends Controller
             }
         ])->get();
 
-        // jumlah bank (bisa difilter rentang waktu)(2)
+        // jumlah bank
         $banks = Bank::withCount([
             'creditRequests' => function ($query) use ($DaysAgo) {
                 $query->where('created_at', '>=', $DaysAgo);
                 $query->where('status', 'DISETUJUI');
-                // $query->whereIn('status', ['DIAJUKAN', 'DISETUJUI']);
             }
         ])
             ->orderBy('name', 'asc')
             ->get();
 
 
-        // jumlah SEMUA STATUS PENGAJUAN (bisa diifilter) (3)
+        // jumlah SEMUA STATUS PENGAJUAN
         $count1a = CreditRequest::where('created_at', '>=', $DaysAgo)
             ->where('status', 'DIAJUKAN')
             ->count();
@@ -276,7 +262,6 @@ class StatistikController extends Controller
             ->where('status', 'DIPENDING')
             ->count();
 
-        // $jumlah_status = [];
         $jumlah_status[] = [
             'diajukan' => $count1a,
             'disetujui' => $count2a,
@@ -285,8 +270,8 @@ class StatistikController extends Controller
             'dipending' => $count5a
         ];
 
-        // Jumlah Pengajuan Peminjaman dalam 7 Hari Terakhir (4)
-        // Data status PENGAJUAN berdasarkan  dalam 7 Hari Terskhir (5)
+        // Jumlah Pengajuan Peminjaman dalam 7 Hari Terakhir
+        // Data status PENGAJUAN berdasarkan  dalam 7 Hari Terskhir
         $dataStatus7 = [];
         $dataPengajuan7 = [];
         for ($date = $today; $date >= $sevenDaysAgo; $date->subDay()) {
@@ -329,9 +314,7 @@ class StatistikController extends Controller
                 'ditolak' => $count4,
                 'dipending' => $count5
             ];
-
         }
-
 
         // presentase pengajuan
         $previousDay = now()->subDay();

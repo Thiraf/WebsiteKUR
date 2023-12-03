@@ -22,11 +22,6 @@ class CheckAdmin0123
             return $next($request);
 
         } else {
-            // return response()->json([
-            //     'status'=> false,
-            //     'message' => 'Anda TIDAK memiliki izin untuk mengakses ini, role != 0123, middlware/CheckAdmin0123. ',
-            // ], 403);
-
             abort(404);
         }
 

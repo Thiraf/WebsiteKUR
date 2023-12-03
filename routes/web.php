@@ -15,7 +15,7 @@ use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\RequirementController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\MemberController;
-
+use App\Http\Controllers\Backend\StatistikController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -34,9 +34,6 @@ use App\Http\Controllers\Auth\LoginController;
 require_once 'web_storage.php';
 
 
-// route login register (bisa dipake)
-// note : pas register ada kolom role, tapi, rolenya masi error, jadi masuk ke db default 0
-
 // regis
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
@@ -47,18 +44,11 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 Route::post('actionlogout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-
-use App\Http\Controllers\Backend\StatistikController;
-
-
-
-
 Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () {
-    // Route::prefix('manage')->name('manage.')->group(function () {
-    Route::resource('/', HomeController::class);
 
     Route::middleware('admin0123')->group(function () {
         // semua admin -------------
+        Route::resource('/', HomeController::class);
 
         // Dashboard
         // Modul Data
@@ -70,7 +60,6 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
         Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
         // Pengajuan KUR
         Route::resource('credit-request', CreditRequestController::class);
-
 
         Route::get('credit-request/{id}/accept', [CreditRequestController::class, 'accept'])->name('credit-request.accept');
         Route::post('credit-request/{id}/accept', [CreditRequestController::class, 'acceptStore'])->name('credit-request.accept-store');
@@ -98,7 +87,6 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
         Route::get('credit-request/{id}/delete', [CreditRequestController::class, 'destroy'])->name('credit-request.delete');
 
 
-
         Route::middleware('admin01')->group(function () {
             // hanya admin 0 1 (ojk dan bank) ------------
 
@@ -114,25 +102,25 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
                 Route::resource('statistik', StatistikController::class);
 
                 // MASTER DATA CRUD
-                // Bank Penyalur KUR (DONE)
+                // Bank Penyalur KUR
                 Route::resource('bank', BankController::class);
 
-                // Jenis Usaha (DONE)
+                // Jenis Usaha
                 Route::resource('business-type', BusinessTypeController::class);
 
-                // Izin Usaha (DONE)
+                // Izin Usaha
                 Route::resource('business-permit', BusinessPermitController::class);
 
 
-                // Jenis KUR (DONE)
+                // Jenis KUR
                 Route::resource('kur-type', KurTypeController::class);
 
-                // Termin (DONE)
+                // Termin
                 Route::resource('termin', TerminController::class);
 
 
                 // MEMBER
-                // Data Member (DONE)
+                // Data Member
                 Route::resource('member', MemberController::class);
 
 
@@ -151,11 +139,8 @@ Route::middleware('auth')->prefix('manage')->name('manage.')->group(function () 
 
                 // Testimoni
                 Route::resource('testimoni', TestimonialController::class);
-
             });
-
         });
-
     });
 });
 

@@ -1,10 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\TestimonialControler;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\TerminController;
 use App\Http\Controllers\Api\BankController;
 use App\Http\Controllers\Api\KurTypeController;
@@ -20,7 +16,6 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StatistikController;
 use App\Http\Controllers\Api\BusinessTypeController;
 use App\Http\Controllers\Api\FinancialInstitutionUmiController;
-use App\Models\CreditRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,64 +28,25 @@ use App\Models\CreditRequest;
 |
 */
 
-
-// cuma buat ngecheck di postman
-Route::post('regis', [RegisterController::class, 'create']);
-Route::post('login', [LoginController::class, 'loginUser']);
-
-// route login, kalo mau akses url tertentu dan gaada token langsung diarahkan ke sini (login). *Mungkin nanti bisa return view login di route web, ntar tp
-Route::get('login', function () {
-    return response()->json([
-        'status' => false,
-        'message' => "akses gaboleh krn belum login. routes/api"
-    ],401);
-})->name('login');
-
-
-
-// require_once 'api.php';
-
-
-
-
-
-// authorization
-
-
-Route::name('api.')->group(function () {
-// Route::middleware('auth')->name('api.')->group(function () {
-
+Route::middleware('auth')->name('api.')->group(function () {
     Route::get('financial-instituion-umi/list/search',[FinancialInstitutionUmiController::class, 'search'])->name('umi.search');
-
-
-    // Route::middleware('admin0123')->group(function () {
+    
+    Route::middleware('admin0123')->group(function () {
         // semua admin -------------
 
-        // Dashboard
-        // Modul Data
-
-
-        Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
-        Route::resource('credit-request', CreditRequestController::class);
         // KUR
         // History Pengajuan
-        // Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
+        Route::get('credit-request/history', [CreditRequestController::class, 'history'])->name('credit-request.history');
         // Pengajuan KUR
-        // Route::resource('credit-request', CreditRequestController::class);
+        Route::resource('credit-request', CreditRequestController::class);
 
-
-        // Riwayat Pengajuan
-
-
-        // Route::middleware('admin01')->group(function () {
+        Route::middleware('admin01')->group(function () {
             // hanya admin 0 1 (ojk dan bank) ------------
 
-            // Master Data
             // Pengguna
             Route::resource('user',UserController::class);
 
-
-            // Route::middleware('superadmin0')->group(function () {
+            Route::middleware('superadmin0')->group(function () {
                 // hanya admin 0 (ojk) ------------
 
                 // DADHBOARD
@@ -102,7 +58,7 @@ Route::name('api.')->group(function () {
 
 
                 // MASTER DATA CRUD
-                // Bank Penyalur KUR ()
+                // Bank Penyalur KUR
                 Route::resource('bank', BankController::class);
                 Route::get('bank/list/search',[BankController::class, 'search'])->name('bank.search');
                 // Jenis Usaha ()
@@ -114,7 +70,6 @@ Route::name('api.')->group(function () {
                 // Termin ()
                 Route::resource('termin', TerminController::class);
 
-
                 // MEMBER
                 // Data Member
                 Route::resource('member', MemberController::class);
@@ -125,19 +80,16 @@ Route::name('api.')->group(function () {
                 Route::resource('news-category',NewsCategoryController::class);
                 // Berita
                 Route::resource('news', NewsController::class);
-                // Profil dan Syarat KUR (suspect)
+                // Profil dan Syarat KUR
                 Route::resource('requirement', RequirementController::class);
                 // FaQ
                 Route::resource('faq',FaqController::class);
-                // Testimoni ()
+                // Testimoni
                 Route::resource('testimoni',TestimonialController::class);
-
             });
-
-        // });
-
-//     });
-// });
+        });
+    });
+});
 
 
 

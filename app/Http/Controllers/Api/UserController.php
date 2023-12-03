@@ -23,8 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        // dd(Auth()->user());
-
+        
         $data = User::with('userpostalcode')
                     ->select('users.*','banks.name as bank_name','districts.name as district_name','regencies.name as regency_name','roles.name as role_name')
                     ->leftJoin('banks','banks.id','=','users.bank_id')
@@ -40,13 +39,6 @@ class UserController extends Controller
             $data->where('bank_id',Auth()->user()->bank_id)
                 ->where('role_id',2);
         }
-
-        // if(Auth()->user()->role_id == 1) {
-        //     $data->where('bank_id',Auth()->user()->bank_id)
-        //         ->where('role_id',2);
-        // }
-
-
 
         return datatables()->of($data->get())
                 ->addColumn('action',function($data){

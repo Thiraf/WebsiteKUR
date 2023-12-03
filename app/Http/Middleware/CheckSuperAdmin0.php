@@ -26,11 +26,6 @@ class CheckSuperAdmin0
             return $next($request);
 
         } else {
-            // return response()->json([
-            //     'status'=> false,
-            //     'message' => 'Anda TIDAK memiliki izin untuk mengakses ini, role != 0, middlware/CheckSuperAdmin0. ',
-            // ], 403);
-
             abort(404);
         }
     }
