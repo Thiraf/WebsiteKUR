@@ -95,6 +95,8 @@
     <script src="{{ asset('theme/jquery/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('theme/jquery/plugins/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('theme/datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <script>
     $(document).on('keydown', '.number-input', function(e) {

@@ -5397,3 +5397,59 @@ a.text-#000000:hover {
         background-color: #7266ba;
     }
 }
+
+.wrapper {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    /* Atur tinggi ke 100% */
+}
+
+.custom-input {
+    width: 16px;
+    height: 30px;
+    /* Set to 'auto' to match the width to placeholder text */
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+}
+
+.btn-filter {
+    display: flex;
+    width: 85px;
+    height: 40px;
+    padding: 8px 20px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 100px;
+    background: #3A424F;
+    color: white;
+    margin-right: 10px;
+}
+
+.input-filter {
+    width: 119px;
+    height: 33px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+}
+
+.flex-container {
+    display: flex;
+    /* Create a flex container */
+    flex-direction: row;
+    /* Default: horizontal layout */
+}
+
+.mr-10 {
+    margin-right: 5px;
+    /* Atur margin-right ke 10px */
+}
+
+.piechart-container {
+    width: 100%;
+    height: 400px !important;
+
+}
